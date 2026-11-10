@@ -76,7 +76,7 @@
         <path d="M14 4L24 14L14 24L4 14Z"/><circle cx="14" cy="14" r="2"/></g></pattern>`;
   const iconBody = (k) => (window.STOP_ICONS[k] || window.STOP_ICONS.castle);
 
-  function baseLayers(k, x0, y0, h, highlight) {
+  function baseLayers(k, x0, y0, h, highlight, noSpain) {
     const districts = MAP.districts.map((ds) =>
       `<path class="district${highlight && highlight.has(ds.name) ? " on-route" : ""}" d="${ds.d}"><title>${esc(ds.name)}</title></path>`).join("");
     const labels = MAP.districts.map((ds) =>
@@ -84,18 +84,19 @@
     return `<defs>${PATTERN}</defs>
       <rect x="-400" y="-400" width="1200" height="1400" class="sea"/>
       <rect x="-400" y="-400" width="1200" height="1400" fill="url(#sea-tiles)"/>
-      <path class="spain" d="${MAP.spain}"/>
+      ${noSpain ? "" : `<path class="spain" d="${MAP.spain}"/>`}
       ${districts}${labels}
       ${x0 < 20 ? `<text class="sea-label" transform="translate(${Math.max(x0 + 14 * k, -12)} ${y0 + h * 0.62}) rotate(-90)" style="font-size:${(11 * k).toFixed(1)}px">ATLANTIC OCEAN</text>` : ""}`;
   }
 
-  /* Portugal with its districts (home page) */
+  /* Portugal with its districts (home page), cropped tight to the country */
   function countryMap() {
-    return `<svg viewBox="-25 0 330 550" role="img" aria-label="Map of mainland Portugal and its 18 districts">
-      ${baseLayers(1, -25, 0, 550)}
-      <text class="sea-label" x="250" y="300" style="font-size:12px">ESPAÑA</text>
-      <g class="map-rose" transform="translate(255 470) scale(.9)">
-        <circle r="22" fill="none" stroke="var(--cobalt)" stroke-width="1" stroke-dasharray="3 2.5"/>
+    const fish = (v, x, y, w, rot) => `<g transform="translate(${x} ${y}) rotate(${rot})"><svg x="0" y="0" width="${w}" height="${w / 3}" viewBox="0 0 120 40">${window.sardineSVG(v, w).replace(/^<svg[^>]*>|<\/svg>$/g, "")}</svg></g>`;
+    return `<svg viewBox="-6 6 292 536" role="img" aria-label="Map of mainland Portugal and its 18 districts">
+      ${baseLayers(1, -6, 6, 536, null, true)}
+      ${fish(1, -4, 118, 46, -12)}${fish(0, 2, 210, 42, 8)}${fish(3, -6, 392, 44, -6)}
+      <g class="map-rose" transform="translate(30 488) scale(.75)">
+        <circle r="22" fill="#fff" stroke="var(--cobalt)" stroke-width="1" stroke-dasharray="3 2.5"/>
         <path d="M0-26L4-4 0 0-4-4z" fill="var(--ochre)"/><path d="M0 26L4 4 0 0-4 4z M26 0L4 4 0 0 4-4z M-26 0L-4 4 0 0-4-4z" fill="var(--cobalt)"/>
         <text y="-30" text-anchor="middle" style="font:700 9px var(--font-body);fill:var(--cobalt)">N</text>
       </g>
@@ -219,9 +220,10 @@
   const ic = (id) => `<svg aria-hidden="true"><use href="#${id}"/></svg>`;
 
   /* ---------- Home ---------- */
-  const SECTIONS = [["long", "long", "secLong", "secLongText"], ["medium", "medium", "secMedium", "secMediumText"], ["getaways", "getaway", "secGetaways", "secGetawaysText"]];
+  const SECTIONS = [["long", "long", "secLong", "secLongText", "castle"], ["medium", "medium", "secMedium", "secMediumText", "wave"], ["getaways", "getaway", "secGetaways", "secGetawaysText", "wine"]];
   function cover(r) {
-    if (r.photo) return `<img src="${esc(r.photo)}" alt="${esc(L(r.title))}" loading="lazy">`;
+    const ph = r.photo && (window.PHOTOS || {})[r.photo];
+    if (ph) return `<img src="${esc(ph.src)}" alt="${esc(L(r.title))}" loading="lazy"><span class="credit">${esc(T("photo"))}: ${esc(ph.author)} · ${esc(ph.license)}</span>`;
     const key = r.coverIcon || (r.stops.find((s) => s.kind !== "via") || r.stops[0]).icon;
     return `<div class="cover-ph"><span class="cover-medallion">${window.iconSVG(key, 96)}</span><span class="cover-note">${esc(T("photoSoon"))}</span></div>`;
   }
@@ -246,16 +248,18 @@
           <h1>${esc(T("introTitle"))}</h1>
           <p>${esc(T("introP1"))}</p>
           <p>${esc(T("introP2"))}</p>
-          <p class="intro-sign">${esc(T("heroText"))}</p>
+          <p>${esc(T("introP3"))}</p>
+          <p class="intro-sign">${esc(T("introEnd"))}</p>
           <p><a class="btn btn-primary" href="#routes">${esc(T("heroCta"))}</a></p>
         </div>
       </div></section>
       <div class="tile-band"></div>
-      <div class="wrap routes-intro" id="routes"><p class="eyebrow">${esc(T("routesEyebrow"))}</p><h2>${esc(T("routesTitle"))}</h2></div>
-      ${SECTIONS.map(([anchor, type, t, txt]) => {
+      <div class="wrap routes-intro" id="routes"><div><p class="eyebrow">${esc(T("routesEyebrow"))}</p><h2>${esc(T("routesTitle"))}</h2></div>
+        <div class="school" aria-hidden="true">${window.sardineSVG(0, 92)}${window.sardineSVG(2, 78)}${window.sardineSVG(4, 86)}</div></div>
+      ${SECTIONS.map(([anchor, type, t, txt, icon]) => {
         const list = ROUTES.filter((r) => r.type === type);
         return `<section class="section route-section" id="${anchor}"><div class="wrap">
-          <div class="section-head"><h2>${esc(T(t))}</h2><p>${esc(T(txt))}</p></div>
+          <div class="section-head"><h2><span class="sec-icon" aria-hidden="true">${window.iconSVG(icon, 30)}</span>${esc(T(t))}</h2><p>${esc(T(txt))}</p></div>
           <div class="route-grid">${list.map(card).join("")}
             <div class="route-card soon"><div class="soon-tile"></div><h3>${esc(T("soonTitle"))}</h3><p>${esc(T("soonText"))}</p></div>
           </div></div></section>`;
@@ -274,13 +278,18 @@
   }
   function panel(r, i, tab) {
     const s = r.stops[i], prev = isGetaway(r) ? null : r.stops[i - 1];
-    if (tab === "overview") return `<p>${esc(L(s.overview))}</p>
+    const lead = (s.photos || []).map((id) => (window.PHOTOS || {})[id]).find(Boolean);
+    if (tab === "overview") return `${lead ? `<figure class="lead-photo"><img src="${esc(lead.src)}" alt="${esc(lead.title)}"><figcaption>${esc(lead.author)} · ${esc(lead.license)}</figcaption></figure>` : ""}<p>${esc(L(s.overview))}</p>
       <div class="panel-actions">
         <a class="btn btn-primary" href="${gm.leg(prev, s)}" target="_blank" rel="noopener">${ic("i-dir")}${esc(prev ? `${T("directionsFrom")} ${L(prev.name)}` : T("directions"))}</a>
         <a class="btn btn-ghost" href="${gm.place(s)}" target="_blank" rel="noopener">${ic("i-pin")}${esc(T("viewMap"))}</a></div>`;
-    if (tab === "pictures") return `<div class="photo-grid">${'<div class="photo-ph"></div>'.repeat(6)}</div>
-      <p class="panel-hint">${esc(T("photosHere", { p: L(s.name) }))}</p>
-      <div class="panel-actions"><a class="btn btn-ghost" href="${gm.photos(s)}" target="_blank" rel="noopener">${esc(T("seePhotos", { p: L(s.name) }))}</a></div>`;
+    if (tab === "pictures") {
+      const list = (s.photos || []).map((id) => (window.PHOTOS || {})[id]).filter(Boolean);
+      const grid = list.length
+        ? `<div class="photo-grid real">${list.map((ph) => `<figure><img src="${esc(ph.src)}" alt="${esc(ph.title)}" loading="lazy"><figcaption><a href="${esc(ph.page)}" target="_blank" rel="noopener">${esc(ph.author)}</a> · ${esc(ph.license)}</figcaption></figure>`).join("")}</div>`
+        : `<div class="photo-grid">${'<div class="photo-ph"></div>'.repeat(6)}</div><p class="panel-hint">${esc(T("photosHere", { p: L(s.name) }))}</p>`;
+      return `${grid}<div class="panel-actions"><a class="btn btn-ghost" href="${gm.photos(s)}" target="_blank" rel="noopener">${esc(T("seePhotos", { p: L(s.name) }))}</a></div>`;
+    }
     return partnerList(s, tab);
   }
 
@@ -301,6 +310,7 @@
     return `<li class="stop via" data-i="${i}" id="stop-${i}">${leg}
       <span class="stop-icon small" aria-hidden="true">${window.iconSVG(s.icon, 22)}</span>
       <div class="via-card">
+        ${(() => { const ph = (s.photos || []).map((id) => (window.PHOTOS || {})[id]).find(Boolean); return ph ? `<img class="via-photo" src="${esc(ph.src)}" alt="${esc(ph.title)}" loading="lazy" title="${esc(ph.author)} · ${esc(ph.license)}">` : ""; })()}
         <p class="via-eyebrow">${esc(eyebrow)}</p>
         <h4>${esc(L(s.name))}</h4>
         <p>${esc(L(s.text))}</p>
@@ -486,6 +496,7 @@
     msg.textContent = T("formOk"); f.reset();
   });
 
+  const fs = $("#footer-school"); if (fs) fs.innerHTML = [3, 1, 0, 2, 4].map((v) => window.sardineSVG(v, 46)).join("");
   applyStatic();
   route();
 })();

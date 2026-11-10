@@ -11,6 +11,7 @@
    icon:  key from js/icons.js (castle, belem, pastry, wine…)
    km:    optional road km from the previous stop. If missing, an
           estimate is calculated from the coordinates.
+   photos: list of ids from js/photos.js (first one = main). Route `photo` = card cover.
    Texts: { en, pt, es, fr }
    ===================================================================== */
 window.ROUTES = [
@@ -19,6 +20,7 @@ window.ROUTES = [
      drawn around the base. km = distance from the base.            */
   {
     id: "douro-getaway",
+    photo: "douro-valley-1",
     type: "getaway",
     days: 2,
     title: { en: "Douro Valley Getaway", pt: "Escapadinha no Douro", es: "Escapada al valle del Duero", fr: "Escapade dans la vallée du Douro" },
@@ -36,7 +38,7 @@ window.ROUTES = [
     },
     stops: [
       {
-        kind: "base", icon: "wine", name: "Pinhão", district: "Vila Real", lat: 41.1920, lng: -7.5468,
+        kind: "base", icon: "wine", name: "Pinhão", photos: ["douro-valley-1", "douro-terraces", "douro-valley-2"], district: "Vila Real", lat: 41.1920, lng: -7.5468,
         overview: {
           en: "Your base is a wine estate (quinta) above the river. Wake up among the vineyards, taste port and Douro wines in the cellar and watch the sunset over the terraces.",
           pt: "A sua base é uma quinta sobre o rio. Acorde entre as vinhas, prove vinho do Porto e do Douro na adega e veja o pôr do sol sobre os socalcos.",
@@ -86,6 +88,7 @@ window.ROUTES = [
   /* ------------------------------------------------------------ 5 DAYS */
   {
     id: "silver-coast",
+    photo: "obidos-castle",
     type: "medium",
     days: 5,
     title: { en: "Silver Coast to Lisbon", pt: "Costa de Prata até Lisboa", es: "De la Costa de Plata a Lisboa", fr: "De la Côte d'Argent à Lisbonne" },
@@ -148,7 +151,7 @@ window.ROUTES = [
         }
       },
       {
-        kind: "main", icon: "castle", name: "Óbidos", district: "Leiria", lat: 39.3606, lng: -9.1571, dayFrom: 3, dayTo: 3,
+        kind: "main", icon: "castle", name: "Óbidos", photos: ["obidos-castle"], district: "Leiria", lat: 39.3606, lng: -9.1571, dayFrom: 3, dayTo: 3,
         overview: {
           en: "A medieval town inside castle walls. Walk on top of the walls at sunset and taste ginjinha, a cherry liqueur served in a chocolate cup.",
           pt: "Uma vila medieval dentro das muralhas. Caminhe sobre as muralhas ao pôr do sol e prove a ginjinha em copo de chocolate.",
@@ -166,7 +169,7 @@ window.ROUTES = [
         }
       },
       {
-        kind: "main", icon: "palace", name: "Sintra", district: "Lisboa", lat: 38.7976, lng: -9.3905, dayFrom: 4, dayTo: 4,
+        kind: "main", icon: "palace", name: "Sintra", photos: ["sintra-palace"], district: "Lisboa", lat: 38.7976, lng: -9.3905, dayFrom: 4, dayTo: 4,
         overview: {
           en: "Fairytale palaces in a misty forest: the colourful Pena Palace, the Moorish Castle and Quinta da Regaleira. Try a travesseiro pastry.",
           pt: "Palácios de conto de fadas numa serra cheia de nevoeiro: a Pena, o Castelo dos Mouros e a Quinta da Regaleira. Prove um travesseiro.",
@@ -184,7 +187,7 @@ window.ROUTES = [
         }
       },
       {
-        kind: "main", icon: "belem", name: { en: "Lisbon", pt: "Lisboa", es: "Lisboa", fr: "Lisbonne" }, district: "Lisboa", lat: 38.7110, lng: -9.1366, dayFrom: 5, dayTo: 5,
+        kind: "main", icon: "belem", name: { en: "Lisbon", pt: "Lisboa", es: "Lisboa", fr: "Lisbonne" }, photos: ["lisbon-alfama", "lisbon-portas-do-sol", "lisbon-sao-vicente"], district: "Lisboa", lat: 38.7110, lng: -9.1366, dayFrom: 5, dayTo: 5,
         overview: {
           en: "Ride tram 28 through Alfama, see the Tower of Belém and the Jerónimos Monastery, eat a warm pastel de nata and end the night with fado.",
           pt: "Ande no elétrico 28 por Alfama, veja a Torre de Belém e os Jerónimos, coma um pastel de nata quente e termine a noite com fado.",
@@ -198,6 +201,7 @@ window.ROUTES = [
   /* ------------------------------------------------------- 7–10 DAYS */
   {
     id: "wonders-of-the-interior",
+    photo: "marvao-castle",
     type: "long",
     days: 7,
     title: { en: "Wonders of the Interior", pt: "Maravilhas do Interior", es: "Maravillas del Interior", fr: "Merveilles de l'intérieur" },
@@ -215,7 +219,7 @@ window.ROUTES = [
     },
     stops: [
       {
-        kind: "main", icon: "espigueiro", name: "Peneda-Gerês", district: "Braga", lat: 41.7280, lng: -8.1610, dayFrom: 1, dayTo: 2,
+        kind: "main", icon: "espigueiro", name: "Peneda-Gerês", photos: ["soajo-granaries-1", "peneda-geres-view", "soajo-granaries-2"], district: "Braga", lat: 41.7280, lng: -8.1610, dayFrom: 1, dayTo: 2,
         overview: {
           en: "Portugal's only national park: waterfalls, wild horses and granite villages. See the stone granaries (espigueiros) of Soajo and Lindoso and swim in the river pools.",
           pt: "O único parque nacional de Portugal: cascatas, garranos e aldeias de granito. Veja os espigueiros do Soajo e do Lindoso e mergulhe nas lagoas.",
@@ -242,7 +246,7 @@ window.ROUTES = [
         }
       },
       {
-        kind: "main", icon: "cheese", name: "Serra da Estrela", district: "Guarda", lat: 40.4060, lng: -7.5410, dayFrom: 3, dayTo: 4,
+        kind: "main", icon: "cheese", name: "Serra da Estrela", photos: ["serra-estrela-1", "covao-ametade", "serra-estrela-2"], district: "Guarda", lat: 40.4060, lng: -7.5410, dayFrom: 3, dayTo: 4,
         overview: {
           en: "The highest mountains of mainland Portugal. Drive to the Torre summit, walk the glacier valley of Zêzere and taste the creamy Serra da Estrela cheese.",
           pt: "As montanhas mais altas de Portugal continental. Suba à Torre, percorra o vale glaciar do Zêzere e prove o queijo da Serra da Estrela.",
@@ -251,7 +255,7 @@ window.ROUTES = [
         }
       },
       {
-        kind: "via", category: "village", icon: "boulder", name: "Monsanto", lat: 40.0390, lng: -7.1140,
+        kind: "via", category: "village", icon: "boulder", name: "Monsanto", photos: ["monsanto-1", "monsanto-2"], lat: 40.0390, lng: -7.1140,
         text: {
           en: "A village built between giant granite boulders, some houses use a rock as their roof. Climb to the castle for the view.",
           pt: "Uma aldeia construída entre penedos gigantes, com casas que usam uma rocha como telhado. Suba ao castelo pela vista.",
@@ -269,7 +273,7 @@ window.ROUTES = [
         }
       },
       {
-        kind: "main", icon: "castle", name: "Marvão", district: "Portalegre", lat: 39.3940, lng: -7.3760, dayFrom: 5, dayTo: 5,
+        kind: "main", icon: "castle", name: "Marvão", photos: ["marvao-castle", "marvao-village", "marvao-view"], district: "Portalegre", lat: 39.3940, lng: -7.3760, dayFrom: 5, dayTo: 5,
         overview: {
           en: "A white village on top of a granite cliff, surrounded by castle walls, with views far into Spain. Stay the night to see the sunset and the stars.",
           pt: "Uma aldeia branca no topo de uma escarpa, cercada por muralhas, com vista até Espanha. Durma cá para ver o pôr do sol e as estrelas.",
@@ -287,7 +291,7 @@ window.ROUTES = [
         }
       },
       {
-        kind: "main", icon: "wheat", name: "Santarém", district: "Santarém", lat: 39.2362, lng: -8.6868, dayFrom: 6, dayTo: 6,
+        kind: "main", icon: "wheat", name: "Santarém", photos: ["santarem-cathedral", "santarem-tagus"], district: "Santarém", lat: 39.2362, lng: -8.6868, dayFrom: 6, dayTo: 6,
         overview: {
           en: "The capital of Gothic in Portugal, above the Tagus river and the fields of the Ribatejo. Watch the sunset from the Portas do Sol garden.",
           pt: "A capital do gótico em Portugal, sobre o Tejo e as lezírias do Ribatejo. Veja o pôr do sol no jardim das Portas do Sol.",
@@ -305,7 +309,7 @@ window.ROUTES = [
         }
       },
       {
-        kind: "main", icon: "temple", name: "Évora", district: "Évora", lat: 38.5714, lng: -7.9135, dayFrom: 7, dayTo: 7,
+        kind: "main", icon: "temple", name: "Évora", photos: ["evora-temple-1", "evora-rooftops", "evora-temple-2"], district: "Évora", lat: 38.5714, lng: -7.9135, dayFrom: 7, dayTo: 7,
         overview: {
           en: "A whitewashed city inside medieval walls with a Roman temple at its centre. Visit the Chapel of Bones, taste Alentejo wines and drive among cork oaks to the Almendres stone circle.",
           pt: "Uma cidade caiada dentro de muralhas, com um templo romano no centro. Visite a Capela dos Ossos, prove vinhos alentejanos e siga entre sobreiros até ao Cromeleque dos Almendres.",

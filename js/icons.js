@@ -171,3 +171,42 @@
     return `<svg viewBox="0 0 32 32" width="${size || 32}" height="${size || 32}" aria-hidden="true">${body}</svg>`;
   };
 })();
+
+/* Painted sardines: decorative motif in the spirit of Portuguese ceramic sardines.
+   window.sardineSVG(variant 0-4, width) */
+(function () {
+  let n = 0;
+  const BODY = "M6 20C18 7 62 3 92 13L114 3c-3 6-4 11-1 17-3 6-2 11 1 17L92 27C62 37 18 33 6 20Z";
+  const V = [
+    // coral bands with white dots
+    (id) => `<rect width="120" height="40" fill="#e8735a"/>
+      <path d="M30 0v40M52 0v40M74 0v40" stroke="#f3c64f" stroke-width="7"/>
+      <g fill="#fff">${[18, 41, 63, 85].map((x) => `<circle cx="${x}" cy="14" r="1.6"/><circle cx="${x}" cy="26" r="1.6"/>`).join("")}</g>`,
+    // azulejo blue with white scales
+    (id) => `<rect width="120" height="40" fill="#1b4a9c"/>
+      <g fill="none" stroke="#fff" stroke-width="1.3">${[0, 1, 2].map((r) => [...Array(12)].map((_, i) => `<path d="M${i * 10 + (r % 2) * 5} ${10 + r * 9}a5 5 0 0 0 10 0"/>`).join("")).join("")}</g>
+      <circle cx="60" cy="20" r="4" fill="#e8735a"/>`,
+    // olive green with little flowers
+    (id) => `<rect width="120" height="40" fill="#5a9e6f"/>
+      ${[[30, 15], [50, 25], [70, 14], [88, 23]].map(([x, y]) => `<g transform="translate(${x} ${y})"><circle r="4.2" fill="#f7d36a"/><circle r="1.8" fill="#e8735a"/></g>`).join("")}
+      <path d="M20 30c10-4 20-4 30 0s20 4 30 0" stroke="#d6efd2" stroke-width="1.4" fill="none"/>`,
+    // yellow with blue zig-zag
+    (id) => `<rect width="120" height="40" fill="#f3c64f"/>
+      <path d="M14 20l6-6 6 6 6-6 6 6 6-6 6 6 6-6 6 6 6-6 6 6 6-6 6 6 6-6 6 6" stroke="#1b4a9c" stroke-width="2.4" fill="none"/>
+      <path d="M14 29h82M14 11h82" stroke="#e8735a" stroke-width="1.6" stroke-dasharray="3 3"/>`,
+    // silver-pink with heart
+    (id) => `<rect width="120" height="40" fill="#f6d5cf"/>
+      <path d="M0 8h120M0 32h120" stroke="#9fb6dd" stroke-width="5"/>
+      <path d="M60 25c-6-4-9-7-9-10a4 4 0 0 1 9-1 4 4 0 0 1 9 1c0 3-3 6-9 10z" fill="#c8384a"/>`
+  ];
+  window.sardineSVG = function (v, w) {
+    const id = "sd" + ++n;
+    return `<svg viewBox="0 0 120 40" width="${w || 120}" height="${(w || 120) / 3}" aria-hidden="true" class="sardine">
+      <defs><clipPath id="${id}"><path d="${BODY}"/></clipPath></defs>
+      <g clip-path="url(#${id})">${V[v % V.length](id)}</g>
+      <path d="${BODY}" fill="none" stroke="#0f2f66" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M26 11c4 5 4 13 0 18" fill="none" stroke="#0f2f66" stroke-width="1.4"/>
+      <circle cx="16" cy="18" r="3.4" fill="#fff" stroke="#0f2f66" stroke-width="1.2"/><circle cx="16.6" cy="18" r="1.6" fill="#0f2f66"/>
+    </svg>`;
+  };
+})();

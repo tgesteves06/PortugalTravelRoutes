@@ -38,9 +38,9 @@ window.I18N = {
     formOk: "Thank you. This is a preview: the form will start sending messages when the site goes online.",
     madeIn: "Made in Portugal", mapCredit: "District boundaries: DGT (ODbL) · Natural Earth",
     introEyebrow: "Welcome to Portugal",
-    introTitle: "One of the oldest nations in Europe",
-    introP1: "Portugal became a kingdom in 1143, almost 900 years ago, and its borders have barely changed since 1297. Few countries in the world have kept the same shape for so long.",
-    introP2: "In a small territory you will find granite mountains and vineyards in the north, schist villages in the centre, cork oak plains in the Alentejo, golden cliffs in the Algarve and the Atlantic all along the way.",
+    introTitle: "One of the oldest countries in Europe",
+    introP1: "Portugal has more than 900 years of history, written in its castles, monasteries and cobbled streets.",
+    introP2: "Here, life happens around the table: grilled sardines on summer nights, a warm pastel de nata with your coffee, bacalhau cooked a hundred ways, cheese from the mountains and wines from the Douro, the Alentejo and the green Minho.",
     routesEyebrow: "Suggested itineraries",
     photoSoon: "Main photo coming soon",
     oneBase: "1 base",
@@ -51,7 +51,10 @@ window.I18N = {
     fromBase: "from your base",
     statBase: "Base",
     statAround: "Activities nearby",
-    statRadius: "Max. km from base"
+    statRadius: "Max. km from base",
+    introP3: "Listen to fado in a Lisbon tavern, wander through villages of granite and schist, find tiles that tell stories on every wall and beaches that stretch along the Atlantic.",
+    introEnd: "Come and discover its charms with Portugal Travel Routes.",
+    photo: "Photo"
   },
   pt: {
     tagline1: "Designed by Locals.", tagline2: "Inspired by Portugal.",
@@ -91,9 +94,9 @@ window.I18N = {
     formOk: "Obrigado. Isto é uma pré-visualização: o formulário começa a enviar mensagens quando o site estiver online.",
     madeIn: "Feito em Portugal", mapCredit: "Limites dos distritos: DGT (ODbL) · Natural Earth",
     introEyebrow: "Bem-vindo a Portugal",
-    introTitle: "Uma das nações mais antigas da Europa",
-    introP1: "Portugal tornou-se reino em 1143, há quase 900 anos, e as suas fronteiras quase não mudaram desde 1297. Poucos países no mundo mantêm a mesma forma há tanto tempo.",
-    introP2: "Num território pequeno encontra serras de granito e vinhas no norte, aldeias de xisto no centro, planícies de sobreiros no Alentejo, falésias douradas no Algarve e o Atlântico sempre por perto.",
+    introTitle: "Um dos países mais antigos da Europa",
+    introP1: "Portugal tem mais de 900 anos de história, escrita nos seus castelos, mosteiros e ruas de calçada.",
+    introP2: "Aqui a vida acontece à mesa: sardinhas assadas nas noites de verão, um pastel de nata quente com o café, bacalhau de mil maneiras, queijos da serra e vinhos do Douro, do Alentejo e do verde Minho.",
     routesEyebrow: "Itinerários sugeridos",
     photoSoon: "Fotografia principal em breve",
     oneBase: "1 base",
@@ -104,7 +107,10 @@ window.I18N = {
     fromBase: "da sua base",
     statBase: "Base",
     statAround: "Atividades por perto",
-    statRadius: "Km máx. da base"
+    statRadius: "Km máx. da base",
+    introP3: "Ouça fado numa taberna de Lisboa, passeie por aldeias de granito e xisto, descubra azulejos que contam histórias em cada parede e praias que se estendem ao longo do Atlântico.",
+    introEnd: "Venha conhecer os seus encantos com a Portugal Travel Routes.",
+    photo: "Foto"
   },
   es: {
     tagline1: "Designed by Locals.", tagline2: "Inspired by Portugal.",
@@ -144,9 +150,9 @@ window.I18N = {
     formOk: "Gracias. Esto es una vista previa: el formulario enviará mensajes cuando el sitio esté en línea.",
     madeIn: "Hecho en Portugal", mapCredit: "Límites de distritos: DGT (ODbL) · Natural Earth",
     introEyebrow: "Bienvenido a Portugal",
-    introTitle: "Una de las naciones más antiguas de Europa",
-    introP1: "Portugal se convirtió en reino en 1143, hace casi 900 años, y sus fronteras apenas han cambiado desde 1297. Pocos países del mundo conservan la misma forma desde hace tanto tiempo.",
-    introP2: "En un territorio pequeño encontrarás montañas de granito y viñedos en el norte, aldeas de pizarra en el centro, llanuras de alcornoques en el Alentejo, acantilados dorados en el Algarve y el Atlántico siempre cerca.",
+    introTitle: "Uno de los países más antiguos de Europa",
+    introP1: "Portugal tiene más de 900 años de historia, escrita en sus castillos, monasterios y calles empedradas.",
+    introP2: "Aquí la vida sucede en la mesa: sardinas asadas en las noches de verano, un pastel de nata caliente con el café, bacalao de mil maneras, quesos de la sierra y vinos del Duero, del Alentejo y del verde Minho.",
     routesEyebrow: "Itinerarios sugeridos",
     photoSoon: "Foto principal próximamente",
     oneBase: "1 base",
@@ -157,7 +163,10 @@ window.I18N = {
     fromBase: "desde tu base",
     statBase: "Base",
     statAround: "Actividades cerca",
-    statRadius: "Km máx. desde la base"
+    statRadius: "Km máx. desde la base",
+    introP3: "Escucha fado en una taberna de Lisboa, pasea por aldeas de granito y pizarra, descubre azulejos que cuentan historias en cada pared y playas que se extienden a lo largo del Atlántico.",
+    introEnd: "Ven a descubrir sus encantos con Portugal Travel Routes.",
+    photo: "Foto"
   },
   fr: {
     tagline1: "Designed by Locals.", tagline2: "Inspired by Portugal.",
@@ -197,9 +206,9 @@ window.I18N = {
     formOk: "Merci. Ceci est un aperçu : le formulaire enverra les messages quand le site sera en ligne.",
     madeIn: "Fait au Portugal", mapCredit: "Limites des districts : DGT (ODbL) · Natural Earth",
     introEyebrow: "Bienvenue au Portugal",
-    introTitle: "L'une des plus anciennes nations d'Europe",
-    introP1: "Le Portugal est devenu un royaume en 1143, il y a presque 900 ans, et ses frontières ont à peine changé depuis 1297. Peu de pays au monde ont gardé la même forme aussi longtemps.",
-    introP2: "Sur un petit territoire, vous trouverez des montagnes de granit et des vignobles au nord, des villages de schiste au centre, des plaines de chênes-lièges en Alentejo, des falaises dorées en Algarve et l'Atlantique tout au long du chemin.",
+    introTitle: "L'un des plus anciens pays d'Europe",
+    introP1: "Le Portugal compte plus de 900 ans d'histoire, inscrite dans ses châteaux, ses monastères et ses ruelles pavées.",
+    introP2: "Ici, la vie se passe à table : sardines grillées les soirs d'été, pastel de nata tiède avec le café, morue cuisinée de cent façons, fromages des montagnes et vins du Douro, de l'Alentejo et du verdoyant Minho.",
     routesEyebrow: "Itinéraires suggérés",
     photoSoon: "Photo principale bientôt",
     oneBase: "1 base",
@@ -210,6 +219,9 @@ window.I18N = {
     fromBase: "depuis votre base",
     statBase: "Base",
     statAround: "Activités à proximité",
-    statRadius: "Km max. depuis la base"
+    statRadius: "Km max. depuis la base",
+    introP3: "Écoutez le fado dans une taverne de Lisbonne, flânez dans des villages de granit et de schiste, découvrez des azulejos qui racontent des histoires sur chaque mur et des plages qui longent l'Atlantique.",
+    introEnd: "Venez découvrir ses charmes avec Portugal Travel Routes.",
+    photo: "Photo"
   }
 };

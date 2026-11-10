@@ -30,3 +30,6 @@ Copy a route block in `js/routes.js`:
 
 District boundaries: Direção-Geral do Território (DGT), ODbL 1.0, via geoBoundaries.
 Spain outline: Natural Earth (public domain).
+
+Photos: Wikimedia Commons, free licences (CC BY / CC BY-SA). Author and licence
+are listed in `js/photos.js` and shown next to each photo on the site.
