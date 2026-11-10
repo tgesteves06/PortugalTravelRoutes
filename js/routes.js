@@ -1,82 +1,297 @@
 /* =====================================================================
-   ROUTES — add a new route by copying one block below.
-   Each stop needs: day, name, region, lat, lng, km (road km from the
-   previous stop; 0 for the first), overview text.
-   Optional per stop: accommodations, activities, restaurants
-   (each item: { name, note, url, partner: true/false }).
+   ROUTES
+   ---------------------------------------------------------------------
+   type:  "getaway" (2 days) | "medium" (5 days) | "long" (7–10 days)
+   Stops are listed in travel order (north to south).
+   Each stop is either:
+     kind: "main"  – a base where you sleep (Gerês, Évora…). Has days,
+                     overview text, pictures, stay / do / eat tabs.
+     kind: "via"   – a must-see on the way (castle, viewpoint,
+                     restaurant…). Short text + directions.
+   icon:  key from js/icons.js (castle, belem, pastry, wine…)
+   km:    optional road km from the previous stop. If missing, an
+          estimate is calculated from the coordinates.
+   Texts: { en, pt, es, fr }
    ===================================================================== */
 window.ROUTES = [
+  /* ------------------------------------------------------------ 2 DAYS */
   {
-    id: "portugal-in-7-days",
-    title: "Portugal in 7 days",
-    tagline: "From Lisbon's hills to the vineyards of the Douro",
-    summary:
-      "A first taste of the country in one week: the capital, the fairytale palaces of Sintra, a walled medieval town, the giant waves of Nazaré, Portugal's oldest university, Porto and the terraced vineyards of the Douro Valley.",
-    season: "All year · best March to October",
+    id: "douro-getaway",
+    type: "getaway",
+    days: 2,
+    title: { en: "Douro Valley Getaway", pt: "Escapadinha ao Douro", es: "Escapada al valle del Duero", fr: "Escapade dans la vallée du Douro" },
+    tagline: {
+      en: "Vineyards, river views and one of the world's most beautiful roads",
+      pt: "Vinhas, rio e uma das estradas mais bonitas do mundo",
+      es: "Viñedos, vistas al río y una de las carreteras más bonitas del mundo",
+      fr: "Vignobles, vues sur le fleuve et l'une des plus belles routes du monde"
+    },
+    summary: {
+      en: "A weekend among the terraced vineyards of the Douro, the oldest demarcated wine region in the world. Leave Porto in the morning, sleep by the river in Pinhão and finish at the baroque stairway of Lamego.",
+      pt: "Um fim de semana entre os socalcos do Douro, a região vinícola demarcada mais antiga do mundo. Saia do Porto de manhã, durma junto ao rio no Pinhão e termine na escadaria barroca de Lamego.",
+      es: "Un fin de semana entre las terrazas de viñedos del Duero, la región vinícola demarcada más antigua del mundo. Sal de Oporto por la mañana, duerme junto al río en Pinhão y termina en la escalinata barroca de Lamego.",
+      fr: "Un week-end parmi les vignobles en terrasses du Douro, la plus ancienne région viticole délimitée au monde. Quittez Porto le matin, dormez au bord du fleuve à Pinhão et terminez par l'escalier baroque de Lamego."
+    },
     stops: [
       {
-        day: 1, name: "Lisbon", region: "Lisbon", lat: 38.7110, lng: -9.1366, km: 0,
-        overview:
-          "Start in the capital. Ride tram 28 through Alfama and Graça, watch the sunset from a miradouro and end the evening with fado. Belém's Jerónimos Monastery and the Tower of Belém are both UNESCO World Heritage.",
-        accommodations: [
-          { name: "Boutique hotel in Alfama", note: "Example partner · from €120/night", url: "#", partner: true },
-          { name: "Guesthouse in Príncipe Real", note: "Example partner · from €90/night", url: "#", partner: true }
-        ],
-        activities: [
-          { name: "Fado evening in Alfama", note: "Example · 2 h", url: "#", partner: true },
-          { name: "Sunset sailing on the Tagus", note: "Example · 2 h", url: "#", partner: true }
-        ],
-        restaurants: [
-          { name: "Traditional tasca in Mouraria", note: "Example partner · grilled sardines, bacalhau", url: "#", partner: true }
-        ]
+        kind: "via", category: "food", icon: "pastry", name: "Amarante", lat: 41.2717, lng: -8.0822,
+        text: {
+          en: "Cross the old São Gonçalo bridge and try the convent sweets of Amarante, made with eggs and almonds.",
+          pt: "Atravesse a ponte de São Gonçalo e prove os doces conventuais de Amarante, feitos com ovos e amêndoa.",
+          es: "Cruza el puente de São Gonçalo y prueba los dulces conventuales de Amarante, hechos con huevo y almendra.",
+          fr: "Traversez le vieux pont São Gonçalo et goûtez les douceurs conventuelles d'Amarante, à base d'œufs et d'amandes."
+        }
       },
       {
-        day: 2, name: "Sintra", region: "Lisbon", lat: 38.7976, lng: -9.3905, km: 28,
-        overview:
-          "Romantic palaces in a misty forest: the colourful Pena Palace, the Moorish Castle and the mysterious initiation well of Quinta da Regaleira. Try a travesseiro pastry before driving to Cabo da Roca, the westernmost point of mainland Europe.",
-        accommodations: [{ name: "Quinta in the Sintra hills", note: "Example partner", url: "#", partner: true }],
-        activities: [{ name: "Pena Palace skip-the-line ticket", note: "Example", url: "#", partner: true }],
-        restaurants: [{ name: "Pastry shop in the old town", note: "Example partner · travesseiros", url: "#", partner: true }]
+        kind: "main", icon: "rabelo", name: "Pinhão", district: "Vila Real", lat: 41.1920, lng: -7.5468, dayFrom: 1, dayTo: 1,
+        overview: {
+          en: "A small village at the heart of the Douro. Take a rabelo boat trip on the river, visit a wine estate (quinta) for a port tasting and look at the blue and white azulejo panels of the train station.",
+          pt: "Uma pequena vila no coração do Douro. Faça um passeio de barco rabelo, visite uma quinta para uma prova de vinho do Porto e veja os painéis de azulejo da estação de comboio.",
+          es: "Un pequeño pueblo en el corazón del Duero. Da un paseo en barco rabelo, visita una quinta para una cata de oporto y mira los paneles de azulejos de la estación de tren.",
+          fr: "Un petit village au cœur du Douro. Faites une balade en bateau rabelo, visitez une quinta pour une dégustation de porto et admirez les azulejos de la gare."
+        }
       },
       {
-        day: 3, name: "Óbidos", region: "Centro", lat: 39.3606, lng: -9.1571, km: 85,
-        overview:
-          "A walled medieval town of white houses trimmed in blue and yellow. Walk the top of the castle walls and taste ginjinha, a sour cherry liqueur, served in a small chocolate cup.",
-        accommodations: [{ name: "Guesthouse inside the walls", note: "Example partner", url: "#", partner: true }],
-        activities: [{ name: "Walk on the castle walls", note: "Free · 1 h", url: "#", partner: false }],
-        restaurants: [{ name: "Family restaurant by the gate", note: "Example partner", url: "#", partner: true }]
+        kind: "via", category: "viewpoint", icon: "wine", name: "Peso da Régua · N222", lat: 41.1625, lng: -7.7870,
+        text: {
+          en: "Drive the N222 along the river, often called one of the best driving roads in the world. Stop at the Douro Museum in Régua.",
+          pt: "Siga pela N222 junto ao rio, considerada uma das melhores estradas do mundo para conduzir. Pare no Museu do Douro, na Régua.",
+          es: "Recorre la N222 junto al río, considerada una de las mejores carreteras del mundo para conducir. Para en el Museo del Duero, en Régua.",
+          fr: "Prenez la N222 le long du fleuve, souvent citée parmi les plus belles routes du monde. Arrêtez-vous au musée du Douro à Régua."
+        }
       },
       {
-        day: 4, name: "Nazaré", region: "Centro", lat: 39.6012, lng: -9.0700, km: 40,
-        overview:
-          "A fishing town famous for the biggest surfed waves in the world, at Praia do Norte. Take the funicular up to Sítio for the view and look for women drying fish on the beach.",
-        accommodations: [{ name: "Sea-view apartment", note: "Example partner", url: "#", partner: true }],
-        activities: [{ name: "Big wave lookout at the lighthouse", note: "October to March", url: "#", partner: false }],
-        restaurants: [{ name: "Seafood by the beach", note: "Example partner · caldeirada", url: "#", partner: true }]
+        kind: "main", icon: "sanctuary", name: "Lamego", district: "Viseu", lat: 41.0965, lng: -7.8090, dayFrom: 2, dayTo: 2,
+        overview: {
+          en: "Climb the 686 steps of the Sanctuary of Nossa Senhora dos Remédios, decorated with azulejos and fountains. Lamego is also known for its sparkling wine and smoked ham.",
+          pt: "Suba os 686 degraus do Santuário de Nossa Senhora dos Remédios, decorados com azulejos e fontes. Lamego é também conhecida pelo espumante e pelo presunto.",
+          es: "Sube los 686 escalones del Santuario de Nossa Senhora dos Remédios, decorados con azulejos y fuentes. Lamego también es famosa por su espumoso y su jamón.",
+          fr: "Montez les 686 marches du sanctuaire de Nossa Senhora dos Remédios, ornées d'azulejos et de fontaines. Lamego est aussi connue pour son vin pétillant et son jambon."
+        }
+      }
+    ]
+  },
+
+  /* ------------------------------------------------------------ 5 DAYS */
+  {
+    id: "silver-coast",
+    type: "medium",
+    days: 5,
+    title: { en: "Silver Coast to Lisbon", pt: "Costa de Prata até Lisboa", es: "De la Costa de Plata a Lisboa", fr: "De la Côte d'Argent à Lisbonne" },
+    tagline: {
+      en: "Canals, giant waves, a walled town and palaces on the way south",
+      pt: "Canais, ondas gigantes, uma vila muralhada e palácios a caminho do sul",
+      es: "Canales, olas gigantes, un pueblo amurallado y palacios rumbo al sur",
+      fr: "Canaux, vagues géantes, village fortifié et palais en route vers le sud"
+    },
+    summary: {
+      en: "Five days down the Atlantic coast, from the colourful boats of Aveiro to the hills of Lisbon, with two UNESCO monasteries, surf towns and the westernmost point of Europe on the way.",
+      pt: "Cinco dias pela costa atlântica, dos barcos coloridos de Aveiro às colinas de Lisboa, com dois mosteiros Património Mundial, vilas de surf e o ponto mais ocidental da Europa pelo caminho.",
+      es: "Cinco días por la costa atlántica, de los barcos de colores de Aveiro a las colinas de Lisboa, con dos monasterios Patrimonio Mundial, pueblos surferos y el punto más occidental de Europa.",
+      fr: "Cinq jours le long de la côte atlantique, des bateaux colorés d'Aveiro aux collines de Lisbonne, avec deux monastères classés à l'UNESCO, des villages de surf et le point le plus occidental de l'Europe."
+    },
+    stops: [
+      {
+        kind: "main", icon: "moliceiro", name: "Aveiro", district: "Aveiro", lat: 40.6405, lng: -8.6538, dayFrom: 1, dayTo: 1,
+        overview: {
+          en: "Ride a painted moliceiro boat along the canals, walk past Art Nouveau houses and taste ovos moles, a sweet egg cream in wafer shells.",
+          pt: "Passeie de moliceiro pelos canais, veja as casas Arte Nova e prove os ovos moles.",
+          es: "Pasea en moliceiro por los canales, mira las casas modernistas y prueba los ovos moles, una crema dulce de huevo.",
+          fr: "Naviguez en moliceiro sur les canaux, admirez les maisons Art nouveau et goûtez les ovos moles, une crème d'œufs sucrée."
+        }
       },
       {
-        day: 5, name: "Coimbra", region: "Centro", lat: 40.2077, lng: -8.4265, km: 110,
-        overview:
-          "Home of one of the oldest universities in Europe, founded in 1290. Visit the baroque Joanina Library and listen to Coimbra fado, sung by men in student capes.",
-        accommodations: [{ name: "Hotel near the university", note: "Example partner", url: "#", partner: true }],
-        activities: [{ name: "University and Joanina Library tour", note: "Example", url: "#", partner: true }],
-        restaurants: [{ name: "Leitão (roast suckling pig) in Mealhada", note: "Example partner · on the way north", url: "#", partner: true }]
+        kind: "via", category: "village", icon: "striped", name: "Costa Nova", lat: 40.6110, lng: -8.7510,
+        text: {
+          en: "A row of striped wooden houses facing the lagoon. Perfect for photos before heading south.",
+          pt: "Uma fila de casas às riscas viradas para a ria. Ideal para fotografias antes de seguir para sul.",
+          es: "Una fila de casas de madera a rayas frente a la ría. Ideal para fotos antes de seguir al sur.",
+          fr: "Une rangée de maisons en bois à rayures face à la lagune. Parfait pour des photos avant de partir vers le sud."
+        }
       },
       {
-        day: 6, name: "Porto", region: "Norte", lat: 41.1408, lng: -8.6110, km: 120,
-        overview:
-          "Climb the Ribeira's colourful streets, cross the Dom Luís I bridge and taste port wine in the cellars of Vila Nova de Gaia. São Bento station's azulejo panels tell the history of Portugal in blue and white.",
-        accommodations: [{ name: "Hotel in Ribeira", note: "Example partner", url: "#", partner: true }],
-        activities: [{ name: "Port wine cellar tour in Gaia", note: "Example", url: "#", partner: true }],
-        restaurants: [{ name: "Francesinha house", note: "Example partner", url: "#", partner: true }]
+        kind: "via", category: "monument", icon: "monastery", name: "Mosteiro da Batalha", lat: 39.6589, lng: -8.8260,
+        text: {
+          en: "A masterpiece of Portuguese Gothic, built to celebrate the victory at Aljubarrota in 1385. Don't miss the Unfinished Chapels.",
+          pt: "Uma obra-prima do gótico português, construída para celebrar a vitória de Aljubarrota em 1385. Não perca as Capelas Imperfeitas.",
+          es: "Una obra maestra del gótico portugués, construida para celebrar la victoria de Aljubarrota en 1385. No te pierdas las Capillas Imperfectas.",
+          fr: "Un chef-d'œuvre du gothique portugais, construit pour célébrer la victoire d'Aljubarrota en 1385. Ne manquez pas les Chapelles inachevées."
+        }
       },
       {
-        day: 7, name: "Douro Valley", region: "Norte", lat: 41.1920, lng: -7.5468, km: 125,
-        overview:
-          "End among the terraced vineyards of the Douro, the oldest demarcated wine region in the world. Base yourself in Pinhão, take a river cruise and visit a quinta for a tasting.",
-        accommodations: [{ name: "Wine estate (quinta) stay", note: "Example partner", url: "#", partner: true }],
-        activities: [{ name: "Douro river cruise", note: "Example · 1 h", url: "#", partner: true }],
-        restaurants: [{ name: "Lunch at a quinta", note: "Example partner · with tasting", url: "#", partner: true }]
+        kind: "main", icon: "wave", name: "Nazaré", district: "Leiria", lat: 39.6012, lng: -9.0700, dayFrom: 2, dayTo: 2,
+        overview: {
+          en: "Home of the biggest waves ever surfed. Take the funicular to Sítio, walk to the lighthouse fort and eat fresh fish by the beach.",
+          pt: "A casa das maiores ondas alguma vez surfadas. Suba de funicular ao Sítio, vá ao forte do farol e coma peixe fresco junto à praia.",
+          es: "El hogar de las olas más grandes jamás surfeadas. Sube en funicular al Sítio, camina hasta el faro y come pescado fresco junto a la playa.",
+          fr: "Le berceau des plus grandes vagues jamais surfées. Montez en funiculaire au Sítio, allez jusqu'au phare et mangez du poisson frais sur la plage."
+        }
+      },
+      {
+        kind: "via", category: "monument", icon: "monastery", name: "Mosteiro de Alcobaça", lat: 39.5486, lng: -8.9797,
+        text: {
+          en: "The largest church in Portugal and the tombs of Pedro and Inês, the country's most famous love story.",
+          pt: "A maior igreja de Portugal e os túmulos de D. Pedro e D. Inês, a história de amor mais famosa do país.",
+          es: "La iglesia más grande de Portugal y las tumbas de Pedro e Inés, la historia de amor más famosa del país.",
+          fr: "La plus grande église du Portugal et les tombeaux de Pierre et Inês, la plus célèbre histoire d'amour du pays."
+        }
+      },
+      {
+        kind: "main", icon: "castle", name: "Óbidos", district: "Leiria", lat: 39.3606, lng: -9.1571, dayFrom: 3, dayTo: 3,
+        overview: {
+          en: "A medieval town inside castle walls. Walk on top of the walls at sunset and taste ginjinha, a cherry liqueur served in a chocolate cup.",
+          pt: "Uma vila medieval dentro das muralhas. Caminhe sobre as muralhas ao pôr do sol e prove a ginjinha em copo de chocolate.",
+          es: "Un pueblo medieval dentro de las murallas. Camina sobre la muralla al atardecer y prueba la ginjinha en vaso de chocolate.",
+          fr: "Une ville médiévale entourée de remparts. Marchez sur les murailles au coucher du soleil et goûtez la ginjinha dans un verre en chocolat."
+        }
+      },
+      {
+        kind: "via", category: "beach", icon: "surf", name: "Ericeira", lat: 38.9631, lng: -9.4170,
+        text: {
+          en: "A white and blue fishing village and Europe's only World Surfing Reserve. Stop for lunch with a sea view.",
+          pt: "Uma vila piscatória branca e azul e a única Reserva Mundial de Surf da Europa. Pare para almoçar com vista para o mar.",
+          es: "Un pueblo pesquero blanco y azul y la única Reserva Mundial de Surf de Europa. Para a comer con vistas al mar.",
+          fr: "Un village de pêcheurs blanc et bleu, seule réserve mondiale de surf d'Europe. Arrêtez-vous déjeuner face à la mer."
+        }
+      },
+      {
+        kind: "main", icon: "palace", name: "Sintra", district: "Lisboa", lat: 38.7976, lng: -9.3905, dayFrom: 4, dayTo: 4,
+        overview: {
+          en: "Fairytale palaces in a misty forest: the colourful Pena Palace, the Moorish Castle and Quinta da Regaleira. Try a travesseiro pastry.",
+          pt: "Palácios de conto de fadas numa serra cheia de nevoeiro: a Pena, o Castelo dos Mouros e a Quinta da Regaleira. Prove um travesseiro.",
+          es: "Palacios de cuento en un bosque con niebla: el colorido Palacio da Pena, el Castillo de los Moros y la Quinta da Regaleira. Prueba un travesseiro.",
+          fr: "Des palais de conte de fées dans une forêt brumeuse : le palais de Pena, le château des Maures et la Quinta da Regaleira. Goûtez un travesseiro."
+        }
+      },
+      {
+        kind: "via", category: "viewpoint", icon: "lighthouse", name: "Cabo da Roca", lat: 38.7804, lng: -9.4989,
+        text: {
+          en: "The westernmost point of mainland Europe, with cliffs 140 metres above the Atlantic.",
+          pt: "O ponto mais ocidental da Europa continental, com falésias a 140 metros sobre o Atlântico.",
+          es: "El punto más occidental de la Europa continental, con acantilados a 140 metros sobre el Atlántico.",
+          fr: "Le point le plus occidental de l'Europe continentale, avec des falaises à 140 mètres au-dessus de l'Atlantique."
+        }
+      },
+      {
+        kind: "main", icon: "belem", name: { en: "Lisbon", pt: "Lisboa", es: "Lisboa", fr: "Lisbonne" }, district: "Lisboa", lat: 38.7110, lng: -9.1366, dayFrom: 5, dayTo: 5,
+        overview: {
+          en: "Ride tram 28 through Alfama, see the Tower of Belém and the Jerónimos Monastery, eat a warm pastel de nata and end the night with fado.",
+          pt: "Ande no elétrico 28 por Alfama, veja a Torre de Belém e os Jerónimos, coma um pastel de nata quente e termine a noite com fado.",
+          es: "Sube al tranvía 28 por Alfama, visita la Torre de Belém y los Jerónimos, come un pastel de nata caliente y termina la noche con fado.",
+          fr: "Prenez le tram 28 dans l'Alfama, voyez la tour de Belém et les Hiéronymites, mangez un pastel de nata tiède et finissez la soirée avec du fado."
+        }
+      }
+    ]
+  },
+
+  /* ------------------------------------------------------- 7–10 DAYS */
+  {
+    id: "wonders-of-the-interior",
+    type: "long",
+    days: 8,
+    title: { en: "Wonders of the Interior", pt: "Maravilhas do Interior", es: "Maravillas del Interior", fr: "Merveilles de l'intérieur" },
+    tagline: {
+      en: "Mountains, granite villages and castles from Gerês to the Alentejo",
+      pt: "Serras, aldeias de granito e castelos do Gerês ao Alentejo",
+      es: "Montañas, aldeas de granito y castillos del Gerês al Alentejo",
+      fr: "Montagnes, villages de granit et châteaux du Gerês à l'Alentejo"
+    },
+    summary: {
+      en: "Eight days through the Portugal few tourists see: the only national park, the highest mountains, villages built between boulders, hilltop castles and the plains of the Alentejo.",
+      pt: "Oito dias pelo Portugal que poucos turistas conhecem: o único parque nacional, as serras mais altas, aldeias entre penedos, castelos no alto dos montes e as planícies do Alentejo.",
+      es: "Ocho días por el Portugal que pocos turistas conocen: el único parque nacional, las montañas más altas, aldeas entre rocas, castillos en lo alto y las llanuras del Alentejo.",
+      fr: "Huit jours dans le Portugal que peu de touristes connaissent : l'unique parc national, les plus hautes montagnes, des villages entre les rochers, des châteaux perchés et les plaines de l'Alentejo."
+    },
+    stops: [
+      {
+        kind: "main", icon: "espigueiro", name: "Peneda-Gerês", district: "Braga", lat: 41.7280, lng: -8.1610, dayFrom: 1, dayTo: 2,
+        overview: {
+          en: "Portugal's only national park: waterfalls, wild horses and granite villages. See the stone granaries (espigueiros) of Soajo and Lindoso and swim in the river pools.",
+          pt: "O único parque nacional de Portugal: cascatas, garranos e aldeias de granito. Veja os espigueiros do Soajo e do Lindoso e mergulhe nas lagoas.",
+          es: "El único parque nacional de Portugal: cascadas, caballos salvajes y aldeas de granito. Visita los hórreos de Soajo y Lindoso y báñate en las pozas.",
+          fr: "L'unique parc national du Portugal : cascades, chevaux sauvages et villages de granit. Découvrez les greniers en pierre de Soajo et Lindoso et baignez-vous dans les bassins naturels."
+        }
+      },
+      {
+        kind: "via", category: "monument", icon: "castle", name: "Castelo de Guimarães", lat: 41.4479, lng: -8.2900,
+        text: {
+          en: "The birthplace of Portugal. The first king, Afonso Henriques, was born here. Walk the medieval centre, a UNESCO site.",
+          pt: "O berço de Portugal, onde nasceu D. Afonso Henriques. Passeie pelo centro histórico, Património Mundial.",
+          es: "La cuna de Portugal, donde nació el primer rey, Afonso Henriques. Pasea por el centro medieval, Patrimonio Mundial.",
+          fr: "Le berceau du Portugal, où naquit le premier roi, Afonso Henriques. Promenez-vous dans le centre médiéval classé à l'UNESCO."
+        }
+      },
+      {
+        kind: "via", category: "food", icon: "wine", name: "Viseu", lat: 40.6566, lng: -7.9125,
+        text: {
+          en: "Lunch stop in the Dão wine region: veal from Lafões and a glass of red, next to the cathedral square.",
+          pt: "Paragem para almoço na região do Dão: vitela de Lafões e um copo de tinto, junto ao largo da Sé.",
+          es: "Parada para comer en la región del Dão: ternera de Lafões y una copa de tinto, junto a la plaza de la catedral.",
+          fr: "Pause déjeuner dans la région viticole du Dão : veau de Lafões et un verre de rouge, près de la place de la cathédrale."
+        }
+      },
+      {
+        kind: "main", icon: "cheese", name: "Serra da Estrela", district: "Guarda", lat: 40.4060, lng: -7.5410, dayFrom: 3, dayTo: 4,
+        overview: {
+          en: "The highest mountains of mainland Portugal. Drive to the Torre summit, walk the glacier valley of Zêzere and taste the creamy Serra da Estrela cheese.",
+          pt: "As montanhas mais altas de Portugal continental. Suba à Torre, percorra o vale glaciar do Zêzere e prove o queijo da Serra da Estrela.",
+          es: "Las montañas más altas del Portugal continental. Sube a la Torre, recorre el valle glaciar del Zêzere y prueba el queso de la Serra da Estrela.",
+          fr: "Les plus hautes montagnes du Portugal continental. Montez jusqu'à la Torre, parcourez la vallée glaciaire du Zêzere et goûtez le fromage de la Serra da Estrela."
+        }
+      },
+      {
+        kind: "via", category: "village", icon: "boulder", name: "Monsanto", lat: 40.0390, lng: -7.1140,
+        text: {
+          en: "A village built between giant granite boulders, some houses use a rock as their roof. Climb to the castle for the view.",
+          pt: "Uma aldeia construída entre penedos gigantes, com casas que usam uma rocha como telhado. Suba ao castelo pela vista.",
+          es: "Una aldea construida entre rocas gigantes, con casas que usan una roca como tejado. Sube al castillo por las vistas.",
+          fr: "Un village bâti entre des rochers géants, certaines maisons ont un rocher pour toit. Montez au château pour la vue."
+        }
+      },
+      {
+        kind: "main", icon: "castle", name: "Marvão", district: "Portalegre", lat: 39.3940, lng: -7.3760, dayFrom: 5, dayTo: 5,
+        overview: {
+          en: "A white village on top of a granite cliff, surrounded by castle walls, with views far into Spain. Stay the night to see the sunset and the stars.",
+          pt: "Uma aldeia branca no topo de uma escarpa, cercada por muralhas, com vista até Espanha. Durma cá para ver o pôr do sol e as estrelas.",
+          es: "Un pueblo blanco en lo alto de un risco, rodeado de murallas, con vistas hasta España. Duerme aquí para ver el atardecer y las estrellas.",
+          fr: "Un village blanc perché sur une falaise, entouré de remparts, avec vue jusqu'en Espagne. Restez la nuit pour le coucher du soleil et les étoiles."
+        }
+      },
+      {
+        kind: "via", category: "monument", icon: "templar", name: "Convento de Cristo, Tomar", lat: 39.6036, lng: -8.4190,
+        text: {
+          en: "The castle and convent of the Knights Templar, with the famous round church and the Manueline window.",
+          pt: "O castelo e convento dos Templários, com a famosa Charola e a janela manuelina.",
+          es: "El castillo y convento de los templarios, con la famosa iglesia redonda y la ventana manuelina.",
+          fr: "Le château et couvent des Templiers, avec la célèbre église ronde et la fenêtre manuéline."
+        }
+      },
+      {
+        kind: "main", icon: "wheat", name: "Santarém", district: "Santarém", lat: 39.2362, lng: -8.6868, dayFrom: 6, dayTo: 6,
+        overview: {
+          en: "The capital of Gothic in Portugal, above the Tagus river and the fields of the Ribatejo. Watch the sunset from the Portas do Sol garden.",
+          pt: "A capital do gótico em Portugal, sobre o Tejo e as lezírias do Ribatejo. Veja o pôr do sol no jardim das Portas do Sol.",
+          es: "La capital del gótico en Portugal, sobre el río Tajo y los campos del Ribatejo. Mira el atardecer desde el jardín de Portas do Sol.",
+          fr: "La capitale du gothique au Portugal, au-dessus du Tage et des plaines du Ribatejo. Admirez le coucher du soleil depuis le jardin des Portas do Sol."
+        }
+      },
+      {
+        kind: "via", category: "food", icon: "soup", name: "Almeirim", lat: 39.2090, lng: -8.6290,
+        text: {
+          en: "Restaurant stop for sopa da pedra, the 'stone soup' with beans, sausage and a stone in the bowl.",
+          pt: "Paragem para comer a famosa sopa da pedra, com feijão, enchidos e uma pedra no prato.",
+          es: "Parada para comer la famosa sopa da pedra, con alubias, embutidos y una piedra en el plato.",
+          fr: "Arrêt gourmand pour la sopa da pedra, la « soupe au caillou » aux haricots et charcuterie, avec une pierre dans l'assiette."
+        }
+      },
+      {
+        kind: "main", icon: "temple", name: "Évora", district: "Évora", lat: 38.5714, lng: -7.9135, dayFrom: 7, dayTo: 8,
+        overview: {
+          en: "A whitewashed city inside medieval walls with a Roman temple at its centre. Visit the Chapel of Bones, taste Alentejo wines and drive among cork oaks to the Almendres stone circle.",
+          pt: "Uma cidade caiada dentro de muralhas, com um templo romano no centro. Visite a Capela dos Ossos, prove vinhos alentejanos e siga entre sobreiros até ao Cromeleque dos Almendres.",
+          es: "Una ciudad encalada dentro de murallas con un templo romano en el centro. Visita la Capilla de los Huesos, prueba vinos del Alentejo y ve entre alcornoques al crómlech de los Almendres.",
+          fr: "Une ville blanchie à la chaux dans ses remparts, avec un temple romain en son centre. Visitez la chapelle des Os, goûtez les vins de l'Alentejo et roulez parmi les chênes-lièges jusqu'au cromlech des Almendres."
+        }
       }
     ]
   }

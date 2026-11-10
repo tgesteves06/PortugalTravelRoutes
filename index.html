@@ -71,10 +71,13 @@
       <svg class="brand-logo" aria-hidden="true"><use href="#logo"/></svg>
       <span class="brand-text">
         <span class="brand-name">Portugal Travel Routes</span>
-        <span class="brand-tag"><em>Designed by Locals.</em> Inspired by Portugal.</span>
+        <span class="brand-tag"><em data-i18n="tagline1">Designed by Locals.</em> <span data-i18n="tagline2">Inspired by Portugal.</span></span>
       </span>
     </a>
     <div class="header-actions">
+      <div class="lang" role="group" aria-label="Language">
+        <button data-lang="en">EN</button><button data-lang="pt">PT</button><button data-lang="es">ES</button><button data-lang="fr">FR</button>
+      </div>
       <button class="icon-btn" id="search-toggle" aria-label="Search" aria-expanded="false" aria-controls="search-panel">
         <svg><use href="#i-search"/></svg>
       </button>
@@ -85,13 +88,9 @@
   </div>
   <nav class="main-nav" id="main-nav" aria-label="Main">
     <ul class="wrap">
-      <li><a href="#home">Routes</a></li>
-      <li><a href="#inspiration">Inspiration</a></li>
-      <li><a href="#maps">Maps</a></li>
-      <li><a href="#accommodations">Accommodations</a></li>
-      <li><a href="#activities">Activities</a></li>
-      <li><a href="#restaurants">Restaurants</a></li>
-      <li><a href="#blog">Blog</a></li>
+      <li><a href="#getaways" data-i18n="navGetaways">Getaways</a></li>
+      <li><a href="#medium" data-i18n="navMedium">5-day routes</a></li>
+      <li><a href="#long" data-i18n="navLong">7–10 day routes</a></li>
     </ul>
   </nav>
   <div class="search-panel" id="search-panel" hidden>
@@ -99,7 +98,7 @@
       <div class="search-box">
         <svg aria-hidden="true"><use href="#i-search"/></svg>
         <label for="search-input" class="visually-hidden">Search the site</label>
-        <input id="search-input" type="search" placeholder="Search routes, places, ideas… e.g. Porto, wine, beach" autocomplete="off">
+        <input id="search-input" type="search" placeholder="Search routes and places" data-i18n-ph="searchPh" autocomplete="off">
       </div>
       <ul class="search-results" id="search-results"></ul>
     </div>
@@ -117,11 +116,11 @@
         <svg class="brand-logo" aria-hidden="true"><use href="#logo"/></svg>
         <span class="brand-name">Portugal Travel Routes</span>
       </div>
-      <p>Road trips planned by people who live here. Tell us where you want to go and we will help you find the way.</p>
-      <p style="margin-top:16px"><button class="btn btn-ochre" id="contact-open">Contact us</button></p>
+      <p data-i18n="footerText">Road trips planned by people who live here.</p>
+      <p style="margin-top:16px"><button class="btn btn-ochre" id="contact-open" data-i18n="contact">Contact us</button></p>
     </div>
     <div>
-      <h2>Follow us</h2>
+      <h2 data-i18n="follow">Follow us</h2>
       <div class="socials">
         <a href="#" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a>
         <a href="#" aria-label="Facebook"><svg><use href="#i-fb"/></svg></a>
@@ -131,12 +130,12 @@
       </div>
     </div>
     <div>
-      <h2>Share this page</h2>
+      <h2 data-i18n="share">Share this page</h2>
       <form class="share-form" id="share-form">
         <label for="share-email" class="visually-hidden">Friend's email</label>
-        <input id="share-email" type="email" placeholder="Friend's email" required>
-        <button class="btn btn-light" type="submit">Send</button>
-        <button class="btn btn-ghost" type="button" id="share-copy">Copy link</button>
+        <input id="share-email" type="email" placeholder="Friend's email" data-i18n-ph="friendEmail" required>
+        <button class="btn btn-light" type="submit" data-i18n="send">Send</button>
+        <button class="btn btn-ghost" type="button" id="share-copy" data-i18n="copy">Copy link</button>
       </form>
       <p class="share-url" id="share-url"></p>
       <p class="share-msg" id="share-msg" role="status"></p>
@@ -144,7 +143,7 @@
   </div>
   <div class="wrap footer-bottom">
     <span>© <span id="year"></span> Portugal Travel Routes</span>
-    <span>Made in Portugal</span>
+    <span><span data-i18n="mapCredit"></span> · <span data-i18n="madeIn">Made in Portugal</span></span>
   </div>
 </footer>
 
@@ -154,41 +153,39 @@
     <div class="tile-band"></div>
     <button class="icon-btn modal-close" id="contact-close" aria-label="Close"><svg><use href="#i-close"/></svg></button>
     <div class="modal-body">
-      <h2 id="contact-title">Contact us</h2>
-      <p>Questions about a route, a partnership or a trip you are planning? Write to us and we will reply within two working days.</p>
+      <h2 id="contact-title" data-i18n="contact">Contact us</h2>
+      <p data-i18n="contactText"></p>
       <form id="contact-form" novalidate>
         <div class="form-grid">
-          <div class="field"><label for="c-first">First name *</label><input id="c-first" required></div>
-          <div class="field"><label for="c-last">Last name *</label><input id="c-last" required></div>
-          <div class="field"><label for="c-email">Email *</label><input id="c-email" type="email" required></div>
+          <div class="field"><label for="c-first"><span data-i18n="first"></span> *</label><input id="c-first" required></div>
+          <div class="field"><label for="c-last"><span data-i18n="last"></span> *</label><input id="c-last" required></div>
+          <div class="field"><label for="c-email"><span data-i18n="email"></span> *</label><input id="c-email" type="email" required></div>
           <div class="field">
-            <label for="c-country">Country *</label>
+            <label for="c-country"><span data-i18n="country"></span> *</label>
             <select id="c-country" required>
-              <option value="">Select…</option>
+              <option value="" data-i18n="select">Select…</option>
               <option>Portugal</option><option>United Kingdom</option><option>United States</option>
               <option>Canada</option><option>Brazil</option><option>France</option><option>Germany</option>
               <option>Spain</option><option>Netherlands</option><option>Other</option>
             </select>
           </div>
           <div class="field full">
-            <label for="c-subject">Subject *</label>
-            <select id="c-subject" required>
-              <option value="">Select…</option>
-              <option>Question about a route</option><option>Plan my trip</option>
-              <option>Partnership (hotel, restaurant, activity)</option><option>Other</option>
-            </select>
+            <label for="c-subject"><span data-i18n="subject"></span> *</label>
+            <select id="c-subject" required></select>
           </div>
-          <div class="field full"><label for="c-msg">Message *</label><textarea id="c-msg" required></textarea></div>
-          <label class="check full field"><input type="checkbox" id="c-consent" required> I agree that my data is used to answer this message, as described in the privacy policy.</label>
+          <div class="field full"><label for="c-msg"><span data-i18n="message"></span> *</label><textarea id="c-msg" required></textarea></div>
+          <label class="check full field"><input type="checkbox" id="c-consent" required> <span data-i18n="consent"></span></label>
         </div>
-        <p style="margin-top:18px"><button class="btn btn-primary" type="submit">Send message</button></p>
+        <p style="margin-top:18px"><button class="btn btn-primary" type="submit" data-i18n="sendMsg">Send message</button></p>
         <p class="form-msg" id="contact-msg" hidden role="status"></p>
       </form>
     </div>
   </div>
 </div>
 
-<script src="js/portugal-shape.js"></script>
+<script src="js/map-data.js"></script>
+<script src="js/icons.js"></script>
+<script src="js/i18n.js"></script>
 <script src="js/routes.js"></script>
 <script src="js/main.js"></script>
 <!--PREVIEW-END-->
