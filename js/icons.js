@@ -163,7 +163,45 @@
       <circle cx="16" cy="5" r="1.6" fill="${O}"/>
       <path d="M14.5 18h3M14.5 21h3" stroke="${B}" stroke-width="1"/>
       <circle cx="8" cy="17" r="2.6" fill="#3c7f55"/><circle cx="24" cy="17" r="2.6" fill="#3c7f55"/>
-      <path d="M8 19.5V21M24 19.5V21" stroke="${K}" stroke-width="1"/>`
+      <path d="M8 19.5V21M24 19.5V21" stroke="${K}" stroke-width="1"/>`,
+    beach: `
+      <circle cx="24" cy="8" r="3.6" fill="${O}"/>
+      <path d="M2 25c4-2 8-2 12 0s8 2 12 0 4-1 4-1v6H2z" fill="${L}"/>
+      <path d="M2 27c5 2 10 2 14 0s10-2 14 0v3H2z" fill="#f0d9a0"/>
+      <path d="M13 25L17 10" stroke="${K}" stroke-width="1.3"/>
+      <path d="M5 13c3-6 13-7 18-1z" fill="${C}"/>
+      <path d="M9.5 12.6c1.5-3.5 5-5.5 8-5M14 12.3c.5-2.5 2-4.5 3.5-4.8" stroke="${W}" stroke-width="1.6" fill="none"/>`,
+    whitehouse: `
+      <path d="M3 27h26" stroke="${S2}" stroke-width="2" stroke-linecap="round"/>
+      <rect x="5" y="13" width="22" height="13" fill="${W}" stroke="${D}" stroke-width=".8"/>
+      <path d="M5 13h22v2H5zM5 24h22v2H5z" fill="${B}"/>
+      <rect x="14" y="18" width="4" height="8" fill="${B}"/>
+      <rect x="8" y="17" width="3" height="3" fill="${B}"/><rect x="21" y="17" width="3" height="3" fill="${B}"/>
+      <rect x="20" y="7" width="3" height="6" fill="${W}" stroke="${D}" stroke-width=".8"/>
+      <path d="M19.5 7h4" stroke="${B}" stroke-width="1.4"/>`,
+    cliffs: `
+      <circle cx="25" cy="7" r="3.2" fill="${O}"/>
+      <path d="M2 28V14c3-3 6-2 8 0l1 6c1-2 3-2 4 0v8z" fill="#d99a4e"/>
+      <path d="M17 28V12c3-4 8-4 11 0v16z" fill="#e2ad62"/>
+      <path d="M20 28v-5a3 3 0 0 1 5 0v5z" fill="${L}"/>
+      <path d="M4 18c2 0 3 1 4 2M19 16c2 0 4 1 6 1" stroke="#b97935" stroke-width="1" fill="none"/>
+      <path d="M2 28c4-2 8 2 12 0s8 2 12 0 4 0 4 0" stroke="${B}" stroke-width="2" fill="none" stroke-linecap="round"/>`,
+    cataplana: `
+      <path d="M11 6c-1-2 1-3 0-5M16 6c-1-2 1-3 0-5M21 6c-1-2 1-3 0-5" stroke="${S2}" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+      <path d="M4 16a12 9 0 0 1 24 0z" fill="#d07a3c"/>
+      <path d="M4 16a12 7 0 0 0 24 0z" fill="#b8612a"/>
+      <path d="M4 16h24" stroke="#8f4a1e" stroke-width="1.4"/>
+      <path d="M9 12a7 4 0 0 1 14 0" stroke="#f0a35c" stroke-width="1.2" fill="none"/>
+      <rect x="14" y="5.5" width="4" height="2.5" rx="1" fill="#8f4a1e"/>
+      <path d="M27 16h3M2 16h3" stroke="#8f4a1e" stroke-width="2" stroke-linecap="round"/>`,
+    sardine: `
+      <path d="M3 18c3-4 9-6 17-5l6-4c-1 3-1 6 0 9l-6-4c-8 1-14-1-17 4z" fill="#9fb6dd"/>
+      <path d="M3 18c3-4 9-6 17-5l6-4c-1 3-1 6 0 9" fill="none" stroke="${D}" stroke-width="1"/>
+      <path d="M8 15.5c3 1 7 1 11-1" stroke="${C}" stroke-width="1.4" fill="none"/>
+      <circle cx="6.5" cy="16.6" r="1" fill="${D}"/>
+      <path d="M4 25h24" stroke="${K}" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M6 22h20M6 25.5h20" stroke="${K}" stroke-width=".8" opacity=".5"/>
+      <path d="M8 28c2-2 4-2 6 0M18 28c2-2 4-2 6 0" stroke="${C}" stroke-width="1.4" fill="none"/>`
   };
 
   window.iconSVG = function (key, size) {

@@ -167,5 +167,19 @@ window.PHOTOS = {
   "author": "Rafael Tello",
   "license": "CC BY-SA 4.0",
   "page": "https://commons.wikimedia.org/wiki/File:DSC07125-Monsanto_(Idanha-a-Nova)-Portugal.jpg"
+ },
+ "milfontes-river": {
+  "src": "images/milfontes-river.jpg",
+  "title": "Rio Mira - Vila Nova de Milfontes - Portugal (46792210505)",
+  "author": "Vitor Oliveira from Torres Vedras, PORTUGAL",
+  "license": "CC BY-SA 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Rio_Mira_-_Vila_Nova_de_Milfontes_-_Portugal_(46792210505).jpg"
+ },
+ "tavira-bridges": {
+  "src": "images/tavira-bridges.jpg",
+  "title": "Three bridges in Tavira",
+  "author": "Till Niermann",
+  "license": "CC BY 3.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Three_bridges_in_Tavira.jpg"
  }
 };

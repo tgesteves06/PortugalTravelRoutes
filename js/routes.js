@@ -318,5 +318,126 @@ window.ROUTES = [
         }
       }
     ]
+  },
+  /* ------------------------------------------------------------ 7 DAYS */
+  {
+    id: "portuguese-summer",
+    photo: "milfontes-river",
+    type: "long",
+    days: 7,
+    title: { en: "Portuguese Summer", pt: "Verão Português", es: "Verano Portugués", fr: "Été portugais" },
+    tagline: {
+      en: "From Lisbon to the Algarve along wild beaches and white villages",
+      pt: "De Lisboa ao Algarve por praias selvagens e aldeias brancas",
+      es: "De Lisboa al Algarve por playas salvajes y pueblos blancos",
+      fr: "De Lisbonne à l'Algarve par des plages sauvages et des villages blancs"
+    },
+    summary: {
+      en: "A week of sun, sea and long lunches. Leave Lisbon for the rice fields and dunes of Comporta, follow the wild Alentejo coast and finish in the Algarve, among golden cliffs, sea caves and the calm lagoon of Tavira.",
+      pt: "Uma semana de sol, mar e almoços longos. Saia de Lisboa para os arrozais e dunas da Comporta, siga a costa selvagem alentejana e termine no Algarve, entre falésias douradas, grutas marinhas e a ria tranquila de Tavira.",
+      es: "Una semana de sol, mar y comidas largas. Sal de Lisboa hacia los arrozales y dunas de Comporta, sigue la costa salvaje del Alentejo y termina en el Algarve, entre acantilados dorados, cuevas marinas y la tranquila ría de Tavira.",
+      fr: "Une semaine de soleil, de mer et de longs déjeuners. Quittez Lisbonne pour les rizières et les dunes de Comporta, suivez la côte sauvage de l'Alentejo et terminez en Algarve, entre falaises dorées, grottes marines et la lagune paisible de Tavira."
+    },
+    stops: [
+      {
+        kind: "main", icon: "belem", name: { en: "Lisbon", pt: "Lisboa", es: "Lisboa", fr: "Lisbonne" }, photos: ["lisbon-alfama", "lisbon-portas-do-sol", "lisbon-sao-vicente"], district: "Lisboa", lat: 38.7110, lng: -9.1366, dayFrom: 1, dayTo: 1,
+        overview: {
+          en: "Start the summer in the capital: a sunset from a miradouro, grilled sardines in the streets of Alfama and a drink by the river in Cais do Sodré.",
+          pt: "Comece o verão na capital: um pôr do sol num miradouro, sardinhas assadas nas ruas de Alfama e uma bebida junto ao rio no Cais do Sodré.",
+          es: "Empieza el verano en la capital: un atardecer desde un mirador, sardinas asadas en las calles de Alfama y una copa junto al río en Cais do Sodré.",
+          fr: "Commencez l'été dans la capitale : un coucher de soleil depuis un miradouro, des sardines grillées dans les ruelles d'Alfama et un verre au bord du fleuve à Cais do Sodré."
+        }
+      },
+      {
+        kind: "via", category: "viewpoint", icon: "viewpoint", name: "Serra da Arrábida", lat: 38.4870, lng: -8.9800,
+        text: {
+          en: "A green mountain that drops into turquoise water. Drive the coastal road and stop at Portinho da Arrábida for a swim.",
+          pt: "Uma serra verde que cai sobre água turquesa. Siga pela estrada da costa e pare no Portinho da Arrábida para um mergulho.",
+          es: "Una sierra verde que cae sobre aguas turquesas. Recorre la carretera de la costa y para en Portinho da Arrábida para darte un baño.",
+          fr: "Une montagne verte qui plonge dans une eau turquoise. Suivez la route côtière et arrêtez-vous au Portinho da Arrábida pour une baignade."
+        }
+      },
+      {
+        kind: "via", category: "food", icon: "sardine", name: "Setúbal", lat: 38.5244, lng: -8.8882,
+        text: {
+          en: "Lunch stop by the harbour: fried cuttlefish (choco frito) and grilled fish straight from the boats.",
+          pt: "Paragem para almoço junto ao porto: choco frito e peixe grelhado acabado de chegar dos barcos.",
+          es: "Parada para comer junto al puerto: choco frito y pescado a la brasa recién llegado de los barcos.",
+          fr: "Pause déjeuner près du port : seiche frite (choco frito) et poisson grillé tout juste débarqué."
+        }
+      },
+      {
+        kind: "main", icon: "beach", name: "Comporta", district: "Setúbal", lat: 38.3800, lng: -8.7830, dayFrom: 2, dayTo: 2,
+        overview: {
+          en: "Rice fields, storks, wooden stilt piers and endless beaches backed by dunes. Comporta is the relaxed side of the Portuguese summer.",
+          pt: "Arrozais, cegonhas, cais palafíticos e praias sem fim com dunas. A Comporta é o lado descontraído do verão português.",
+          es: "Arrozales, cigüeñas, muelles palafíticos y playas infinitas con dunas. Comporta es el lado relajado del verano portugués.",
+          fr: "Rizières, cigognes, pontons sur pilotis et plages infinies bordées de dunes. Comporta, c'est le côté détendu de l'été portugais."
+        }
+      },
+      {
+        kind: "via", category: "village", icon: "whitehouse", name: "Porto Covo", lat: 37.8520, lng: -8.7920,
+        text: {
+          en: "A white and blue fishing village above small coves, with the Pessegueiro island and its fort just offshore.",
+          pt: "Uma aldeia piscatória branca e azul sobre pequenas enseadas, com a ilha do Pessegueiro e o seu forte ao largo.",
+          es: "Un pueblo pesquero blanco y azul sobre pequeñas calas, con la isla del Pessegueiro y su fuerte frente a la costa.",
+          fr: "Un village de pêcheurs blanc et bleu au-dessus de petites criques, face à l'île de Pessegueiro et son fort."
+        }
+      },
+      {
+        kind: "main", icon: "wave", name: "Vila Nova de Milfontes", photos: ["milfontes-river"], district: "Beja", lat: 37.7250, lng: -8.7830, dayFrom: 3, dayTo: 3,
+        overview: {
+          en: "Where the Mira river meets the Atlantic. Swim in the calm river beach, walk a stretch of the Fishermen's Trail and eat fresh barnacles at sunset.",
+          pt: "Onde o rio Mira encontra o Atlântico. Nade na praia fluvial, percorra um troço do Trilho dos Pescadores e coma percebes ao pôr do sol.",
+          es: "Donde el río Mira se encuentra con el Atlántico. Báñate en la playa del río, recorre un tramo de la Ruta de los Pescadores y come percebes al atardecer.",
+          fr: "Là où le Mira rejoint l'Atlantique. Baignez-vous dans la rivière, parcourez un tronçon du Sentier des Pêcheurs et goûtez des pouces-pieds au coucher du soleil."
+        }
+      },
+      {
+        kind: "via", category: "viewpoint", icon: "lighthouse", name: "Cabo de São Vicente", lat: 37.0227, lng: -8.9960,
+        text: {
+          en: "The south-western tip of Europe, once called the end of the world. Come for the cliffs and stay for the sunset.",
+          pt: "A ponta sudoeste da Europa, em tempos chamada o fim do mundo. Venha pelas falésias e fique pelo pôr do sol.",
+          es: "El extremo suroeste de Europa, antaño llamado el fin del mundo. Ven por los acantilados y quédate por el atardecer.",
+          fr: "La pointe sud-ouest de l'Europe, autrefois appelée le bout du monde. Venez pour les falaises, restez pour le coucher du soleil."
+        }
+      },
+      {
+        kind: "main", icon: "cliffs", name: "Lagos", district: "Faro", lat: 37.1028, lng: -8.6730, dayFrom: 4, dayTo: 5,
+        overview: {
+          en: "Golden cliffs, rock arches and clear water. Take a kayak to the grottoes of Ponta da Piedade, swim at Praia do Camilo and wander the old town in the evening.",
+          pt: "Falésias douradas, arcos de pedra e água transparente. Vá de caiaque às grutas da Ponta da Piedade, nade na Praia do Camilo e passeie pelo centro histórico à noite.",
+          es: "Acantilados dorados, arcos de roca y aguas cristalinas. Ve en kayak a las grutas de Ponta da Piedade, báñate en la Praia do Camilo y pasea por el casco antiguo al anochecer.",
+          fr: "Falaises dorées, arches rocheuses et eau limpide. Partez en kayak vers les grottes de Ponta da Piedade, baignez-vous à la Praia do Camilo et flânez dans la vieille ville le soir."
+        }
+      },
+      {
+        kind: "via", category: "beach", icon: "cliffs", name: "Benagil", lat: 37.0875, lng: -8.4268,
+        text: {
+          en: "Take a boat to the famous Benagil sea cave, with its round opening to the sky.",
+          pt: "Apanhe um barco até à famosa gruta de Benagil, com a sua abertura redonda para o céu.",
+          es: "Toma un barco hasta la famosa cueva de Benagil, con su abertura redonda al cielo.",
+          fr: "Prenez un bateau jusqu'à la célèbre grotte de Benagil, avec son ouverture ronde sur le ciel."
+        }
+      },
+      {
+        kind: "via", category: "food", icon: "cataplana", name: "Olhão", lat: 37.0260, lng: -7.8410,
+        text: {
+          en: "Lunch stop in a fishing town on the Ria Formosa: a seafood cataplana to share, cooked in its copper pan.",
+          pt: "Paragem para almoço numa vila piscatória da Ria Formosa: uma cataplana de marisco para partilhar.",
+          es: "Parada para comer en un pueblo pesquero de la Ría Formosa: una cataplana de marisco para compartir.",
+          fr: "Pause déjeuner dans un port de pêche de la Ria Formosa : une cataplana de fruits de mer à partager."
+        }
+      },
+      {
+        kind: "main", icon: "castle", name: "Tavira", photos: ["tavira-bridges"], district: "Faro", lat: 37.1275, lng: -7.6506, dayFrom: 6, dayTo: 7,
+        overview: {
+          en: "The prettiest town of the eastern Algarve, with a Roman bridge, churches and hipped roofs. Take the little ferry to Ilha de Tavira for a lazy last day on the beach.",
+          pt: "A vila mais bonita do Algarve oriental, com ponte romana, igrejas e telhados de tesouro. Apanhe o barco para a Ilha de Tavira e passe um último dia de praia.",
+          es: "El pueblo más bonito del Algarve oriental, con puente romano, iglesias y tejados de cuatro aguas. Toma el barco a la Ilha de Tavira para un último día de playa.",
+          fr: "La plus jolie ville de l'Algarve oriental, avec son pont romain, ses églises et ses toits en pointe. Prenez le petit bateau pour l'Ilha de Tavira et une dernière journée de plage."
+        }
+      }
+    ]
   }
 ];
