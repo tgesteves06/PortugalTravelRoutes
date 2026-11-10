@@ -33,3 +33,9 @@ Spain outline: Natural Earth (public domain).
 
 Photos: Wikimedia Commons, free licences (CC BY / CC BY-SA). Author and licence
 are listed in `js/photos.js` and shown next to each photo on the site.
+
+## Domain
+
+The site is prepared for **portugaltravelroutes.com** (`CNAME`, canonical URL,
+social preview tags, `robots.txt`, `sitemap.xml`). Nothing is published until
+hosting is switched on and the domain's DNS points to it.
