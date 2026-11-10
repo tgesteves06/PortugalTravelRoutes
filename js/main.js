@@ -71,7 +71,7 @@
   }
 
   const PATTERN = `<pattern id="sea-tiles" width="28" height="28" patternUnits="userSpaceOnUse">
-      <g fill="none" stroke="#5f97cf" stroke-width=".7" opacity=".35">
+      <g fill="none" stroke="#a8946b" stroke-width=".6" opacity=".28">
         <path d="M0 8A8 8 0 0 0 8 0M20 0A8 8 0 0 0 28 8M28 20A8 8 0 0 0 20 28M8 28A8 8 0 0 0 0 20"/>
         <path d="M14 4L24 14L14 24L4 14Z"/><circle cx="14" cy="14" r="2"/></g></pattern>`;
   const iconBody = (k) => (window.STOP_ICONS[k] || window.STOP_ICONS.castle);
@@ -91,14 +91,12 @@
 
   /* Portugal with its districts (home page), cropped tight to the country */
   function countryMap() {
-    const fish = (v, x, y, w, rot) => `<g transform="translate(${x} ${y}) rotate(${rot})"><svg x="0" y="0" width="${w}" height="${w / 3}" viewBox="0 0 120 40">${window.sardineSVG(v, w).replace(/^<svg[^>]*>|<\/svg>$/g, "")}</svg></g>`;
     return `<svg viewBox="-6 6 292 536" role="img" aria-label="Map of mainland Portugal and its 18 districts">
       ${baseLayers(1, -6, 6, 536, null, true)}
-      ${fish(1, -4, 118, 46, -12)}${fish(0, 2, 210, 42, 8)}${fish(3, -6, 392, 44, -6)}
       <g class="map-rose" transform="translate(30 488) scale(.75)">
-        <circle r="22" fill="#fff" stroke="var(--cobalt)" stroke-width="1" stroke-dasharray="3 2.5"/>
-        <path d="M0-26L4-4 0 0-4-4z" fill="var(--ochre)"/><path d="M0 26L4 4 0 0-4 4z M26 0L4 4 0 0 4-4z M-26 0L-4 4 0 0-4-4z" fill="var(--cobalt)"/>
-        <text y="-30" text-anchor="middle" style="font:700 9px var(--font-body);fill:var(--cobalt)">N</text>
+        <circle r="22" fill="none" stroke="var(--land)" stroke-width="1" stroke-dasharray="3 2.5"/>
+        <path d="M0-26L4-4 0 0-4-4z" fill="var(--bordeaux)"/><path d="M0 26L4 4 0 0-4 4z M26 0L4 4 0 0 4-4z M-26 0L-4 4 0 0-4-4z" fill="var(--land)"/>
+        <text y="-30" text-anchor="middle" style="font:700 9px var(--font-body);fill:var(--land)">N</text>
       </g>
     </svg>`;
   }
@@ -242,7 +240,7 @@
   function viewHome() {
     app.innerHTML = `
       <section class="intro"><div class="wrap intro-inner">
-        <div class="intro-map">${countryMap()}</div>
+        <div class="intro-map"><div class="map-heading" aria-hidden="true"><b>Portugal</b><span>${esc(T("mapSubtitle"))}</span></div>${countryMap()}</div>
         <div class="intro-text">
           <p class="eyebrow">${esc(T("introEyebrow"))}</p>
           <h1>${esc(T("introTitle"))}</h1>
@@ -250,7 +248,6 @@
           <p>${esc(T("introP2"))}</p>
           <p>${esc(T("introP3"))}</p>
           <p class="intro-sign">${esc(T("introEnd"))}</p>
-          <p><a class="btn btn-primary" href="#routes">${esc(T("heroCta"))}</a></p>
         </div>
       </div></section>
       <div class="tile-band"></div>
@@ -363,7 +360,6 @@
       <div class="wrap route-layout">
         <div class="map-col">
           <div class="map-frame" id="map-frame">${routeMap(r)}
-            <button class="icon-btn replay" id="replay" aria-label="${esc(T("replay"))}" title="${esc(T("replay"))}">${ic("i-replay")}</button>
           </div>
           <p class="map-note">${esc(T("mapNote"))}</p>
         </div>
@@ -372,7 +368,6 @@
 
     const svg = $("#map-frame svg");
     animateRoute(svg, getaway);
-    $("#replay").addEventListener("click", () => animateRoute(svg, getaway));
 
     const setTab = (li, tab) => {
       $$(".tab", li).forEach((b) => b.setAttribute("aria-selected", b.dataset.tab === tab));

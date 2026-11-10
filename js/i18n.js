@@ -54,7 +54,8 @@ window.I18N = {
     statRadius: "Max. km from base",
     introP3: "Listen to fado in a Lisbon tavern, wander through villages of granite and schist, find tiles that tell stories on every wall and beaches that stretch along the Atlantic.",
     introEnd: "Come and discover its charms with Portugal Travel Routes.",
-    photo: "Photo"
+    photo: "Photo",
+    mapSubtitle: "Mainland · 18 districts"
   },
   pt: {
     tagline1: "Designed by Locals.", tagline2: "Inspired by Portugal.",
@@ -110,7 +111,8 @@ window.I18N = {
     statRadius: "Km máx. da base",
     introP3: "Ouça fado numa taberna de Lisboa, passeie por aldeias de granito e xisto, descubra azulejos que contam histórias em cada parede e praias que se estendem ao longo do Atlântico.",
     introEnd: "Venha conhecer os seus encantos com a Portugal Travel Routes.",
-    photo: "Foto"
+    photo: "Foto",
+    mapSubtitle: "Continente · 18 distritos"
   },
   es: {
     tagline1: "Designed by Locals.", tagline2: "Inspired by Portugal.",
@@ -166,7 +168,8 @@ window.I18N = {
     statRadius: "Km máx. desde la base",
     introP3: "Escucha fado en una taberna de Lisboa, pasea por aldeas de granito y pizarra, descubre azulejos que cuentan historias en cada pared y playas que se extienden a lo largo del Atlántico.",
     introEnd: "Ven a descubrir sus encantos con Portugal Travel Routes.",
-    photo: "Foto"
+    photo: "Foto",
+    mapSubtitle: "Continente · 18 distritos"
   },
   fr: {
     tagline1: "Designed by Locals.", tagline2: "Inspired by Portugal.",
@@ -222,6 +225,7 @@ window.I18N = {
     statRadius: "Km max. depuis la base",
     introP3: "Écoutez le fado dans une taverne de Lisbonne, flânez dans des villages de granit et de schiste, découvrez des azulejos qui racontent des histoires sur chaque mur et des plages qui longent l'Atlantique.",
     introEnd: "Venez découvrir ses charmes avec Portugal Travel Routes.",
-    photo: "Photo"
+    photo: "Photo",
+    mapSubtitle: "Continent · 18 districts"
   }
 };
