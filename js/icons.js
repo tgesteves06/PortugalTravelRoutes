@@ -137,7 +137,33 @@
         <ellipse cx="13.3" cy="14.5" rx="1.5" ry="2.8" transform="rotate(-30 13.3 14.5)"/><ellipse cx="18.7" cy="14.5" rx="1.5" ry="2.8" transform="rotate(30 18.7 14.5)"/>
         <ellipse cx="13.3" cy="19" rx="1.5" ry="2.8" transform="rotate(-30 13.3 19)"/><ellipse cx="18.7" cy="19" rx="1.5" ry="2.8" transform="rotate(30 18.7 19)"/>
       </g>
-      <path d="M16 24c-3-1-5-3-6-5M16 25c3-1 5-3 6-5" stroke="${G}" stroke-width="1.3" fill="none"/>`
+      <path d="M16 24c-3-1-5-3-6-5M16 25c3-1 5-3 6-5" stroke="${G}" stroke-width="1.3" fill="none"/>`,
+    viewpoint: `
+      <circle cx="23" cy="9" r="4" fill="${O}"/>
+      <path d="M2 24c4-6 8-9 12-9s6 3 9 3 5-2 7-3v12H2z" fill="${G}"/>
+      <path d="M2 27c5-4 10-5 15-4s9 1 13-1v6H2z" fill="#3c7f55"/>
+      <path d="M17 12a3 3 0 1 1 6 0v3h-6z" fill="${W}" stroke="${D}" stroke-width=".8"/>
+      <path d="M19.5 9.5v-2" stroke="${D}" stroke-width="1"/>
+      <path d="M4 20c3-1 6-1 8 0" stroke="${L}" stroke-width="1.4" fill="none" stroke-linecap="round"/>`,
+    rockart: `
+      <path d="M3 25c0-9 5-17 14-18 7-1 12 4 12 11 0 5-3 9-8 9H6c-2 0-3-1-3-2z" fill="#c8c0b1"/>
+      <path d="M8 23c2-3 6-4 10-4" stroke="#a69c8a" stroke-width="1" fill="none"/>
+      <g fill="none" stroke="${K}" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 18c2-2 7-2 10-1l3-4 2 1-2 3"/>
+        <path d="M9 18l-1 4M12 18.5l-.5 4M17 18l.5 4M19.5 17.5l1 3.5"/>
+        <path d="M9 18c-1-1-2-1-3 0"/>
+        <path d="M21 13l1-2M23 13.5l1.5-1.5"/>
+      </g>`,
+    garden: `
+      <path d="M4 27h24" stroke="${S2}" stroke-width="2" stroke-linecap="round"/>
+      <path d="M6 26c0-4 2-6 5-6s5 2 5 6zM16 26c0-4 2-6 5-6s5 2 5 6z" fill="${G}"/>
+      <path d="M13 26V12h6v14" fill="${W}" stroke="${D}" stroke-width=".8"/>
+      <path d="M16 12V6" stroke="${D}" stroke-width="1"/>
+      <path d="M12 12h8l-4-4z" fill="${B}"/>
+      <circle cx="16" cy="5" r="1.6" fill="${O}"/>
+      <path d="M14.5 18h3M14.5 21h3" stroke="${B}" stroke-width="1"/>
+      <circle cx="8" cy="17" r="2.6" fill="#3c7f55"/><circle cx="24" cy="17" r="2.6" fill="#3c7f55"/>
+      <path d="M8 19.5V21M24 19.5V21" stroke="${K}" stroke-width="1"/>`
   };
 
   window.iconSVG = function (key, size) {

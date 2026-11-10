@@ -17,10 +17,12 @@ Languages: English (default), Portuguese, Spanish, French.
 
 Copy a route block in `js/routes.js`:
 
-- `type`: `getaway` (2 days), `medium` (5 days) or `long` (7–10 days)
+- `type`: `getaway` (2 days, one base with activities around), `medium` (5 days) or `long` (7 days)
 - `stops` in travel order (north to south), each one:
   - `kind: "main"` – a base where you sleep: `dayFrom`, `dayTo`, `district`, `overview`
   - `kind: "via"` – a must-see on the way: `category`, `text`
+  - getaways: first stop `kind: "base"` (the hotel), then `kind: "activity"` stops around it
+- optional `photo` (path to the main photo shown on the home page card)
   - `name`, `lat`, `lng`, `icon` (key from `js/icons.js`), optional `km`
 - Texts are `{ en, pt, es, fr }`
 

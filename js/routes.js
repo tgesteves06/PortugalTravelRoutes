@@ -1,7 +1,7 @@
 /* =====================================================================
    ROUTES
    ---------------------------------------------------------------------
-   type:  "getaway" (2 days) | "medium" (5 days) | "long" (7–10 days)
+   type:  "getaway" (2 days, one base) | "medium" (5 days) | "long" (7 days)
    Stops are listed in travel order (north to south).
    Each stop is either:
      kind: "main"  – a base where you sleep (Gerês, Évora…). Has days,
@@ -14,59 +14,70 @@
    Texts: { en, pt, es, fr }
    ===================================================================== */
 window.ROUTES = [
-  /* ------------------------------------------------------------ 2 DAYS */
+  /* ------------------------------------------------- GETAWAY (2 days)
+     First stop = kind "base" (the hotel). The others = kind "activity",
+     drawn around the base. km = distance from the base.            */
   {
     id: "douro-getaway",
     type: "getaway",
     days: 2,
-    title: { en: "Douro Valley Getaway", pt: "Escapadinha ao Douro", es: "Escapada al valle del Duero", fr: "Escapade dans la vallée du Douro" },
+    title: { en: "Douro Valley Getaway", pt: "Escapadinha no Douro", es: "Escapada al valle del Duero", fr: "Escapade dans la vallée du Douro" },
     tagline: {
-      en: "Vineyards, river views and one of the world's most beautiful roads",
-      pt: "Vinhas, rio e uma das estradas mais bonitas do mundo",
-      es: "Viñedos, vistas al río y una de las carreteras más bonitas del mundo",
-      fr: "Vignobles, vues sur le fleuve et l'une des plus belles routes du monde"
+      en: "Sleep in a wine estate and explore the valley around it",
+      pt: "Dormir numa quinta e descobrir o vale à volta",
+      es: "Dormir en una quinta y descubrir el valle a su alrededor",
+      fr: "Dormir dans un domaine viticole et explorer la vallée autour"
     },
     summary: {
-      en: "A weekend among the terraced vineyards of the Douro, the oldest demarcated wine region in the world. Leave Porto in the morning, sleep by the river in Pinhão and finish at the baroque stairway of Lamego.",
-      pt: "Um fim de semana entre os socalcos do Douro, a região vinícola demarcada mais antiga do mundo. Saia do Porto de manhã, durma junto ao rio no Pinhão e termine na escadaria barroca de Lamego.",
-      es: "Un fin de semana entre las terrazas de viñedos del Duero, la región vinícola demarcada más antigua del mundo. Sal de Oporto por la mañana, duerme junto al río en Pinhão y termina en la escalinata barroca de Lamego.",
-      fr: "Un week-end parmi les vignobles en terrasses du Douro, la plus ancienne région viticole délimitée au monde. Quittez Porto le matin, dormez au bord du fleuve à Pinhão et terminez par l'escalier baroque de Lamego."
+      en: "Two days in the oldest demarcated wine region in the world. Stay at a quinta in Pinhão, among the terraced vineyards, and spend the days on the river, at viewpoints and in a baroque palace.",
+      pt: "Dois dias na região vinícola demarcada mais antiga do mundo. Fique numa quinta no Pinhão, entre os socalcos, e passe os dias no rio, nos miradouros e num palácio barroco.",
+      es: "Dos días en la región vinícola demarcada más antigua del mundo. Alójate en una quinta en Pinhão, entre las terrazas de viñedos, y pasa los días en el río, en miradores y en un palacio barroco.",
+      fr: "Deux jours dans la plus ancienne région viticole délimitée au monde. Séjournez dans une quinta à Pinhão, parmi les vignes en terrasses, et passez vos journées sur le fleuve, aux points de vue et dans un palais baroque."
     },
     stops: [
       {
-        kind: "via", category: "food", icon: "pastry", name: "Amarante", lat: 41.2717, lng: -8.0822,
-        text: {
-          en: "Cross the old São Gonçalo bridge and try the convent sweets of Amarante, made with eggs and almonds.",
-          pt: "Atravesse a ponte de São Gonçalo e prove os doces conventuais de Amarante, feitos com ovos e amêndoa.",
-          es: "Cruza el puente de São Gonçalo y prueba los dulces conventuales de Amarante, hechos con huevo y almendra.",
-          fr: "Traversez le vieux pont São Gonçalo et goûtez les douceurs conventuelles d'Amarante, à base d'œufs et d'amandes."
-        }
-      },
-      {
-        kind: "main", icon: "rabelo", name: "Pinhão", district: "Vila Real", lat: 41.1920, lng: -7.5468, dayFrom: 1, dayTo: 1,
+        kind: "base", icon: "wine", name: "Pinhão", district: "Vila Real", lat: 41.1920, lng: -7.5468,
         overview: {
-          en: "A small village at the heart of the Douro. Take a rabelo boat trip on the river, visit a wine estate (quinta) for a port tasting and look at the blue and white azulejo panels of the train station.",
-          pt: "Uma pequena vila no coração do Douro. Faça um passeio de barco rabelo, visite uma quinta para uma prova de vinho do Porto e veja os painéis de azulejo da estação de comboio.",
-          es: "Un pequeño pueblo en el corazón del Duero. Da un paseo en barco rabelo, visita una quinta para una cata de oporto y mira los paneles de azulejos de la estación de tren.",
-          fr: "Un petit village au cœur du Douro. Faites une balade en bateau rabelo, visitez une quinta pour une dégustation de porto et admirez les azulejos de la gare."
+          en: "Your base is a wine estate (quinta) above the river. Wake up among the vineyards, taste port and Douro wines in the cellar and watch the sunset over the terraces.",
+          pt: "A sua base é uma quinta sobre o rio. Acorde entre as vinhas, prove vinho do Porto e do Douro na adega e veja o pôr do sol sobre os socalcos.",
+          es: "Tu base es una quinta sobre el río. Despierta entre viñedos, prueba vinos de Oporto y del Duero en la bodega y mira el atardecer sobre las terrazas.",
+          fr: "Votre base est un domaine viticole (quinta) au-dessus du fleuve. Réveillez-vous parmi les vignes, goûtez porto et vins du Douro au chai et admirez le coucher du soleil sur les terrasses."
         }
       },
       {
-        kind: "via", category: "viewpoint", icon: "wine", name: "Peso da Régua · N222", lat: 41.1625, lng: -7.7870,
+        kind: "activity", category: "boat", icon: "rabelo", name: "Peso da Régua", lat: 41.1615, lng: -7.7860,
         text: {
-          en: "Drive the N222 along the river, often called one of the best driving roads in the world. Stop at the Douro Museum in Régua.",
-          pt: "Siga pela N222 junto ao rio, considerada uma das melhores estradas do mundo para conduzir. Pare no Museu do Douro, na Régua.",
-          es: "Recorre la N222 junto al río, considerada una de las mejores carreteras del mundo para conducir. Para en el Museo del Duero, en Régua.",
-          fr: "Prenez la N222 le long du fleuve, souvent citée parmi les plus belles routes du monde. Arrêtez-vous au musée du Douro à Régua."
+          en: "Board a rabelo boat, the traditional boat that carried port wine barrels down the river, for a cruise between Régua and Pinhão.",
+          pt: "Embarque num barco rabelo, o barco que levava as pipas de vinho do Porto rio abaixo, para um cruzeiro entre a Régua e o Pinhão.",
+          es: "Sube a un barco rabelo, el barco que llevaba los barriles de oporto río abajo, para un crucero entre Régua y Pinhão.",
+          fr: "Embarquez sur un rabelo, le bateau qui transportait les fûts de porto sur le fleuve, pour une croisière entre Régua et Pinhão."
         }
       },
       {
-        kind: "main", icon: "sanctuary", name: "Lamego", district: "Viseu", lat: 41.0965, lng: -7.8090, dayFrom: 2, dayTo: 2,
-        overview: {
-          en: "Climb the 686 steps of the Sanctuary of Nossa Senhora dos Remédios, decorated with azulejos and fountains. Lamego is also known for its sparkling wine and smoked ham.",
-          pt: "Suba os 686 degraus do Santuário de Nossa Senhora dos Remédios, decorados com azulejos e fontes. Lamego é também conhecida pelo espumante e pelo presunto.",
-          es: "Sube los 686 escalones del Santuario de Nossa Senhora dos Remédios, decorados con azulejos y fuentes. Lamego también es famosa por su espumoso y su jamón.",
-          fr: "Montez les 686 marches du sanctuaire de Nossa Senhora dos Remédios, ornées d'azulejos et de fontaines. Lamego est aussi connue pour son vin pétillant et son jambon."
+        kind: "activity", category: "monument", icon: "palace", name: "Casa de Mateus", lat: 41.2966, lng: -7.7155,
+        text: {
+          en: "A baroque palace with formal gardens and a mirror lake, the house on the label of the famous Mateus rosé.",
+          pt: "Um palácio barroco com jardins e um lago espelhado, a casa que aparece no rótulo do famoso Mateus Rosé.",
+          es: "Un palacio barroco con jardines y un estanque espejo, la casa de la etiqueta del famoso Mateus Rosé.",
+          fr: "Un palais baroque avec jardins et bassin miroir, la maison qui figure sur l'étiquette du célèbre Mateus rosé."
+        }
+      },
+      {
+        kind: "activity", category: "viewpoint", icon: "viewpoint", name: "São Salvador do Mundo", lat: 41.1265, lng: -7.4108,
+        text: {
+          en: "Small chapels on a hill above a bend of the Douro, with one of the widest views of the valley.",
+          pt: "Pequenas capelas num monte sobre uma curva do Douro, com uma das vistas mais amplas do vale.",
+          es: "Pequeñas capillas en un monte sobre una curva del Duero, con una de las vistas más amplias del valle.",
+          fr: "De petites chapelles sur une colline au-dessus d'un méandre du Douro, avec l'une des plus belles vues sur la vallée."
+        }
+      },
+      {
+        kind: "activity", category: "activity", icon: "rockart", name: "Vale do Côa", lat: 41.0815, lng: -7.1395,
+        text: {
+          en: "Visit the open-air Palaeolithic rock art of the Côa Valley, engraved more than 20,000 years ago and listed by UNESCO.",
+          pt: "Visite a arte rupestre ao ar livre do Vale do Côa, gravada há mais de 20 000 anos e Património Mundial.",
+          es: "Visita el arte rupestre al aire libre del valle del Côa, grabado hace más de 20 000 años y Patrimonio Mundial.",
+          fr: "Découvrez l'art rupestre en plein air de la vallée du Côa, gravé il y a plus de 20 000 ans et classé à l'UNESCO."
         }
       }
     ]
@@ -188,7 +199,7 @@ window.ROUTES = [
   {
     id: "wonders-of-the-interior",
     type: "long",
-    days: 8,
+    days: 7,
     title: { en: "Wonders of the Interior", pt: "Maravilhas do Interior", es: "Maravillas del Interior", fr: "Merveilles de l'intérieur" },
     tagline: {
       en: "Mountains, granite villages and castles from Gerês to the Alentejo",
@@ -197,10 +208,10 @@ window.ROUTES = [
       fr: "Montagnes, villages de granit et châteaux du Gerês à l'Alentejo"
     },
     summary: {
-      en: "Eight days through the Portugal few tourists see: the only national park, the highest mountains, villages built between boulders, hilltop castles and the plains of the Alentejo.",
-      pt: "Oito dias pelo Portugal que poucos turistas conhecem: o único parque nacional, as serras mais altas, aldeias entre penedos, castelos no alto dos montes e as planícies do Alentejo.",
-      es: "Ocho días por el Portugal que pocos turistas conocen: el único parque nacional, las montañas más altas, aldeas entre rocas, castillos en lo alto y las llanuras del Alentejo.",
-      fr: "Huit jours dans le Portugal que peu de touristes connaissent : l'unique parc national, les plus hautes montagnes, des villages entre les rochers, des châteaux perchés et les plaines de l'Alentejo."
+      en: "Seven days through the Portugal few tourists see: the only national park, the highest mountains, villages built between boulders, hilltop castles and the plains of the Alentejo.",
+      pt: "Sete dias pelo Portugal que poucos turistas conhecem: o único parque nacional, as serras mais altas, aldeias entre penedos, castelos no alto dos montes e as planícies do Alentejo.",
+      es: "Siete días por el Portugal que pocos turistas conocen: el único parque nacional, las montañas más altas, aldeas entre rocas, castillos en lo alto y las llanuras del Alentejo.",
+      fr: "Sept jours dans le Portugal que peu de touristes connaissent : l'unique parc national, les plus hautes montagnes, des villages entre les rochers, des châteaux perchés et les plaines de l'Alentejo."
     },
     stops: [
       {
@@ -249,6 +260,15 @@ window.ROUTES = [
         }
       },
       {
+        kind: "via", category: "monument", icon: "garden", name: "Castelo Branco", lat: 39.8222, lng: -7.4931,
+        text: {
+          en: "Walk through the baroque garden of the Episcopal Palace, with its stairways of granite kings, and see the famous embroidered silk bedspreads.",
+          pt: "Passeie pelo Jardim do Paço Episcopal, com as escadarias dos reis em granito, e veja as famosas colchas bordadas de Castelo Branco.",
+          es: "Pasea por el jardín barroco del Palacio Episcopal, con sus escaleras de reyes de granito, y descubre las famosas colchas bordadas.",
+          fr: "Promenez-vous dans le jardin baroque du palais épiscopal, avec ses escaliers de rois en granit, et découvrez les célèbres couvre-lits brodés."
+        }
+      },
+      {
         kind: "main", icon: "castle", name: "Marvão", district: "Portalegre", lat: 39.3940, lng: -7.3760, dayFrom: 5, dayTo: 5,
         overview: {
           en: "A white village on top of a granite cliff, surrounded by castle walls, with views far into Spain. Stay the night to see the sunset and the stars.",
@@ -285,7 +305,7 @@ window.ROUTES = [
         }
       },
       {
-        kind: "main", icon: "temple", name: "Évora", district: "Évora", lat: 38.5714, lng: -7.9135, dayFrom: 7, dayTo: 8,
+        kind: "main", icon: "temple", name: "Évora", district: "Évora", lat: 38.5714, lng: -7.9135, dayFrom: 7, dayTo: 7,
         overview: {
           en: "A whitewashed city inside medieval walls with a Roman temple at its centre. Visit the Chapel of Bones, taste Alentejo wines and drive among cork oaks to the Almendres stone circle.",
           pt: "Uma cidade caiada dentro de muralhas, com um templo romano no centro. Visite a Capela dos Ossos, prove vinhos alentejanos e siga entre sobreiros até ao Cromeleque dos Almendres.",
