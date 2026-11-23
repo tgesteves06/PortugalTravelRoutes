@@ -26,13 +26,13 @@ window.I18N = {
     exStay: "Partner hotel in {p}", exDo: "Partner experience in {p}", exEat: "Partner restaurant in {p}",
     exNote: "Example: our partners will appear here", book: "Book", reserve: "Reserve", partner: "Partner",
     district: "District", breadcrumb: "Routes",
-    footerText: "Road trips planned by people who live here. Tell us where you want to go and we will help you find the way.",
+    footerText: "Do you know a special place, a village or a restaurant that deserves to be on one of our routes? Send us your suggestion.",
     contact: "Contact us", follow: "Follow us", share: "Share this page", friendEmail: "Friend's email", send: "Send", copy: "Copy link",
     shareSent: "Your email app should open with the link ready to send.", copied: "Link copied.", copyFallback: "Link selected. Press Ctrl+C (or ⌘C) to copy.",
     shareSubject: "A Portugal road trip for you", shareBody: "I found this and thought of you:",
     contactText: "Questions about a route, a partnership or a trip you are planning? Write to us and we will reply within two working days.",
     first: "First name", last: "Last name", email: "Email", country: "Country", subject: "Subject", message: "Message", select: "Select…",
-    subjects: ["Question about a route", "Plan my trip", "Partnership (hotel, restaurant, activity)", "Other"],
+    subjects: ["Suggestion of a route or place", "Question about a route", "Plan my trip", "Partnership (hotel, restaurant, activity)", "Other"],
     consent: "I agree that my data is used to answer this message, as described in the privacy policy.",
     sendMsg: "Send message", formError: "Please fill in every field marked * and accept the privacy note.",
     formOk: "Thank you. This is a preview: the form will start sending messages when the site goes online.",
@@ -76,7 +76,8 @@ window.I18N = {
     newsBtn: "Subscribe",
     newsConsent: "I want to receive the newsletter and accept the privacy policy.",
     newsError: "Please write a valid email and tick the box.",
-    newsOk: "Thank you! This is a preview: subscriptions will start when the site goes online."
+    newsOk: "Thank you! This is a preview: subscriptions will start when the site goes online.",
+    suggestBtn: "Send a suggestion"
   },
   pt: {
     tagline1: "Designed by Locals.", tagline2: "Inspired by Portugal.",
@@ -104,13 +105,13 @@ window.I18N = {
     exStay: "Hotel parceiro em {p}", exDo: "Experiência parceira em {p}", exEat: "Restaurante parceiro em {p}",
     exNote: "Exemplo: os nossos parceiros vão aparecer aqui", book: "Reservar", reserve: "Reservar", partner: "Parceiro",
     district: "Distrito", breadcrumb: "Rotas",
-    footerText: "Road trips planeadas por quem vive cá. Diga-nos para onde quer ir e ajudamos a encontrar o caminho.",
+    footerText: "Conhece um lugar especial, uma aldeia ou um restaurante que merece estar numa das nossas rotas? Envie-nos a sua sugestão.",
     contact: "Contacte-nos", follow: "Siga-nos", share: "Partilhar esta página", friendEmail: "Email de um amigo", send: "Enviar", copy: "Copiar link",
     shareSent: "A sua aplicação de email deve abrir com o link pronto a enviar.", copied: "Link copiado.", copyFallback: "Link selecionado. Carregue Ctrl+C (ou ⌘C) para copiar.",
     shareSubject: "Uma road trip em Portugal para ti", shareBody: "Encontrei isto e lembrei-me de ti:",
     contactText: "Dúvidas sobre uma rota, uma parceria ou uma viagem que está a planear? Escreva-nos e respondemos em dois dias úteis.",
     first: "Nome", last: "Apelido", email: "Email", country: "País", subject: "Assunto", message: "Mensagem", select: "Escolha…",
-    subjects: ["Dúvida sobre uma rota", "Planear a minha viagem", "Parceria (hotel, restaurante, atividade)", "Outro"],
+    subjects: ["Sugestão de rota ou local", "Dúvida sobre uma rota", "Planear a minha viagem", "Parceria (hotel, restaurante, atividade)", "Outro"],
     consent: "Aceito que os meus dados sejam usados para responder a esta mensagem, conforme a política de privacidade.",
     sendMsg: "Enviar mensagem", formError: "Preencha todos os campos com * e aceite a nota de privacidade.",
     formOk: "Obrigado. Isto é uma pré-visualização: o formulário começa a enviar mensagens quando o site estiver online.",
@@ -154,7 +155,8 @@ window.I18N = {
     newsBtn: "Subscrever",
     newsConsent: "Quero receber a newsletter e aceito a política de privacidade.",
     newsError: "Escreva um email válido e assinale a caixa.",
-    newsOk: "Obrigado! Isto é uma pré-visualização: as subscrições começam quando o site estiver online."
+    newsOk: "Obrigado! Isto é uma pré-visualização: as subscrições começam quando o site estiver online.",
+    suggestBtn: "Enviar sugestão"
   },
   es: {
     tagline1: "Designed by Locals.", tagline2: "Inspired by Portugal.",
@@ -182,13 +184,13 @@ window.I18N = {
     exStay: "Hotel colaborador en {p}", exDo: "Experiencia colaboradora en {p}", exEat: "Restaurante colaborador en {p}",
     exNote: "Ejemplo: aquí aparecerán nuestros colaboradores", book: "Reservar", reserve: "Reservar", partner: "Colaborador",
     district: "Distrito", breadcrumb: "Rutas",
-    footerText: "Road trips planificados por quien vive aquí. Dinos adónde quieres ir y te ayudamos a encontrar el camino.",
+    footerText: "¿Conoces un lugar especial, un pueblo o un restaurante que merece estar en una de nuestras rutas? Envíanos tu sugerencia.",
     contact: "Contacto", follow: "Síguenos", share: "Compartir esta página", friendEmail: "Email de un amigo", send: "Enviar", copy: "Copiar enlace",
     shareSent: "Tu aplicación de correo debería abrirse con el enlace listo para enviar.", copied: "Enlace copiado.", copyFallback: "Enlace seleccionado. Pulsa Ctrl+C (o ⌘C) para copiar.",
     shareSubject: "Un road trip por Portugal para ti", shareBody: "Encontré esto y me acordé de ti:",
     contactText: "¿Preguntas sobre una ruta, una colaboración o un viaje que estás planificando? Escríbenos y te responderemos en dos días laborables.",
     first: "Nombre", last: "Apellido", email: "Email", country: "País", subject: "Asunto", message: "Mensaje", select: "Elige…",
-    subjects: ["Pregunta sobre una ruta", "Planificar mi viaje", "Colaboración (hotel, restaurante, actividad)", "Otro"],
+    subjects: ["Sugerencia de ruta o lugar", "Pregunta sobre una ruta", "Planificar mi viaje", "Colaboración (hotel, restaurante, actividad)", "Otro"],
     consent: "Acepto que mis datos se usen para responder a este mensaje, según la política de privacidad.",
     sendMsg: "Enviar mensaje", formError: "Rellena todos los campos con * y acepta la nota de privacidad.",
     formOk: "Gracias. Esto es una vista previa: el formulario enviará mensajes cuando el sitio esté en línea.",
@@ -232,7 +234,8 @@ window.I18N = {
     newsBtn: "Suscribirme",
     newsConsent: "Quiero recibir la newsletter y acepto la política de privacidad.",
     newsError: "Escribe un email válido y marca la casilla.",
-    newsOk: "¡Gracias! Esto es una vista previa: las suscripciones empezarán cuando el sitio esté en línea."
+    newsOk: "¡Gracias! Esto es una vista previa: las suscripciones empezarán cuando el sitio esté en línea.",
+    suggestBtn: "Enviar sugerencia"
   },
   fr: {
     tagline1: "Designed by Locals.", tagline2: "Inspired by Portugal.",
@@ -260,13 +263,13 @@ window.I18N = {
     exStay: "Hôtel partenaire à {p}", exDo: "Activité partenaire à {p}", exEat: "Restaurant partenaire à {p}",
     exNote: "Exemple : nos partenaires apparaîtront ici", book: "Réserver", reserve: "Réserver", partner: "Partenaire",
     district: "District", breadcrumb: "Itinéraires",
-    footerText: "Des road trips préparés par ceux qui vivent ici. Dites-nous où vous voulez aller et nous vous aiderons à trouver le chemin.",
+    footerText: "Vous connaissez un lieu spécial, un village ou un restaurant qui mérite d'être sur l'un de nos itinéraires ? Envoyez-nous votre suggestion.",
     contact: "Nous contacter", follow: "Suivez-nous", share: "Partager cette page", friendEmail: "Email d'un ami", send: "Envoyer", copy: "Copier le lien",
     shareSent: "Votre messagerie devrait s'ouvrir avec le lien prêt à envoyer.", copied: "Lien copié.", copyFallback: "Lien sélectionné. Appuyez sur Ctrl+C (ou ⌘C) pour copier.",
     shareSubject: "Un road trip au Portugal pour toi", shareBody: "J'ai trouvé ceci et j'ai pensé à toi :",
     contactText: "Une question sur un itinéraire, un partenariat ou un voyage en préparation ? Écrivez-nous, nous répondrons sous deux jours ouvrés.",
     first: "Prénom", last: "Nom", email: "Email", country: "Pays", subject: "Objet", message: "Message", select: "Choisir…",
-    subjects: ["Question sur un itinéraire", "Préparer mon voyage", "Partenariat (hôtel, restaurant, activité)", "Autre"],
+    subjects: ["Suggestion d'itinéraire ou de lieu", "Question sur un itinéraire", "Préparer mon voyage", "Partenariat (hôtel, restaurant, activité)", "Autre"],
     consent: "J'accepte que mes données soient utilisées pour répondre à ce message, selon la politique de confidentialité.",
     sendMsg: "Envoyer le message", formError: "Remplissez tous les champs marqués * et acceptez la note de confidentialité.",
     formOk: "Merci. Ceci est un aperçu : le formulaire enverra les messages quand le site sera en ligne.",
@@ -310,6 +313,7 @@ window.I18N = {
     newsBtn: "S'abonner",
     newsConsent: "Je souhaite recevoir la newsletter et j'accepte la politique de confidentialité.",
     newsError: "Écrivez un email valide et cochez la case.",
-    newsOk: "Merci ! Ceci est un aperçu : les abonnements commenceront quand le site sera en ligne."
+    newsOk: "Merci ! Ceci est un aperçu : les abonnements commenceront quand le site sera en ligne.",
+    suggestBtn: "Envoyer une suggestion"
   }
 };

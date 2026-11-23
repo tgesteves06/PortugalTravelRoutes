@@ -547,7 +547,7 @@
 
   /* ---------- Contact ---------- */
   const modal = $("#contact-modal");
-  $("#contact-open").addEventListener("click", () => { modal.hidden = false; $("#c-first").focus(); });
+  $("#contact-open").addEventListener("click", () => { modal.hidden = false; $("#c-subject").selectedIndex = 1; $("#c-first").focus(); });
   const close = () => { modal.hidden = true; $("#contact-open").focus(); };
   $("#contact-close").addEventListener("click", close);
   modal.addEventListener("click", (e) => { if (e.target === modal) close(); });
