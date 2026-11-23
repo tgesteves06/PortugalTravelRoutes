@@ -2,6 +2,13 @@
   "use strict";
 
   const ROUTES = window.ROUTES || [];
+  // The return leg (e.g. back to the airport city) becomes the last stop.
+  ROUTES.forEach((r) => {
+    if (r.returnTo && !r.stops.some((s) => s.isReturn)) {
+      const t = r.returnTo;
+      r.stops.push(Object.assign({}, t, { kind: t.nights ? "main" : "return", isReturn: true, dayFrom: t.day, dayTo: t.dayTo || t.day }));
+    }
+  });
   const MAP = window.MAP_DATA;
   const app = document.getElementById("app");
   const $ = (s, el = document) => el.querySelector(s);
@@ -42,17 +49,26 @@
     return Math.max(5, Math.round((2 * R * Math.asin(Math.sqrt(h)) * 1.3) / 5) * 5);
   }
   const isGetaway = (r) => r.type === "getaway";
-  // linear routes: km from previous stop; getaways: km from the base
+  const isHub = (r) => r.stops[0] && r.stops[0].kind === "base"; // one base, activities around it
+  // linear routes: km from previous stop; hub getaways: km from the base
   const legKm = (r, i) => {
     if (i === 0) return 0;
     const s = r.stops[i];
-    return s.km ?? estKm(isGetaway(r) ? r.stops[0] : r.stops[i - 1], s);
+    return s.km ?? estKm(isHub(r) ? r.stops[0] : r.stops[i - 1], s);
   };
   const totalKm = (r) => r.stops.reduce((s, _, i) => s + legKm(r, i), 0);
   const maxKm = (r) => Math.max(0, ...r.stops.map((_, i) => legKm(r, i)));
   const mains = (r) => r.stops.filter((s) => s.kind === "main");
+  const CAT_BY_ICON = { castle: "monument", monastery: "monument", sanctuary: "monument", palace: "monument", templar: "monument", temple: "monument", garden: "monument", bridge: "monument", belem: "monument", university: "monument", rockart: "monument",
+    beach: "beach", surf: "beach", wave: "beach", cliffs: "beach", sardine: "food", cataplana: "food", soup: "food", pastry: "food", cheese: "food", olive: "food", wine: "wine",
+    whitehouse: "village", striped: "village", boulder: "village", schist: "village", espigueiro: "village", viewpoint: "viewpoint", lighthouse: "viewpoint", rabelo: "boat", moliceiro: "boat" };
+  const catOf = (s) => T("cat")[s.category || CAT_BY_ICON[s.icon]] || "";
+  const nightsTxt = (n) => `${n} ${T(n === 1 ? "night" : "nights")}`;
   const vias = (r) => r.stops.filter((s) => s.kind === "via");
-  const dayLabel = (s) => (s.dayFrom === s.dayTo ? `${T("day")} ${s.dayFrom}` : `${T("daysShort")} ${s.dayFrom}–${s.dayTo}`);
+  const dayLabel = (s) => {
+    const d = s.daysText ? L(s.daysText) : s.dayFrom === s.dayTo ? `${T("day")} ${s.dayFrom}` : `${T("daysShort")} ${s.dayFrom}–${s.dayTo}`;
+    return s.nights ? `${d} · ${nightsTxt(s.nights)}` : d;
+  };
 
   function smoothPath(pts) {
     let d = `M${pts[0][0].toFixed(1)} ${pts[0][1].toFixed(1)}`;
@@ -105,14 +121,14 @@
   function routeMap(route) {
     const pts = route.stops.map((s) => project(s.lat, s.lng));
     const xs = pts.map((p) => p[0]), ys = pts.map((p) => p[1]);
-    const pad = isGetaway(route) ? 24 : 45;
+    const pad = isHub(route) ? 24 : 45;
     let x0 = Math.min(...xs) - pad, y0 = Math.min(...ys) - pad;
     let w = Math.max(...xs) + pad - x0, h = Math.max(...ys) + pad - y0;
-    const ratio = 0.78, minH = isGetaway(route) ? 110 : 150;
+    const ratio = 0.78, minH = isHub(route) ? 110 : 150;
     if (h < minH) { y0 -= (minH - h) / 2; h = minH; }
     if (w / h < ratio) { const nw = h * ratio; x0 -= (nw - w) / 2; w = nw; }
     else { const nh = w / ratio; y0 -= (nh - h) / 2; h = nh; }
-    const getaway = isGetaway(route);
+    const getaway = isHub(route);
     const k = Math.min(1, Math.max(0.15, h / 560)) * (getaway ? 1.3 : 1);
     const highlight = new Set(route.stops.map((s) => s.district).filter(Boolean));
 
@@ -125,11 +141,11 @@
       const badge = s.kind === "main"
         ? `<circle class="badge" cx="${x + r * 0.78}" cy="${y - r * 0.78}" r="${5.2 * k}"/><text class="badge-num" x="${x + r * 0.78}" y="${y - r * 0.78 + 0.3 * k}" style="font-size:${(7 * k).toFixed(1)}px">${mainN}</text>`
         : "";
-      const busy = (dir) => route.stops.some((o, j) => j !== i && (pts[j][0] - x) * dir > 0 && Math.abs(pts[j][0] - x) < 62 * k && Math.abs(pts[j][1] - y) < 22 * k);
+      const busy = (dir) => route.stops.some((o, j) => j !== i && !o.isReturn && (pts[j][0] - x) * dir > 0 && Math.abs(pts[j][0] - x) < 62 * k && Math.abs(pts[j][1] - y) < 22 * k);
       const right = busy(1), leftBusy = busy(-1);
       const left = right && !leftBusy ? true : !right && !leftBusy ? (x < x0 + w * 0.3 || x > x0 + w * 0.8) : false;
       const label = big
-        ? `<text class="lbl" x="${left ? x - r - 4 * k : x + r + 4 * k}" y="${y + 3.5 * k}" text-anchor="${left ? "end" : "start"}" style="font-size:${(10.5 * k).toFixed(1)}px">${esc(L(s.name))}</text>`
+        ? `<text class="lbl" x="${left ? x - r - 4 * k : x + r + (s.kind === "main" ? 9 : 4) * k}" y="${y + 3.5 * k}" text-anchor="${left ? "end" : "start"}" style="font-size:${(10.5 * k).toFixed(1)}px">${esc(L(s.name))}</text>`
         : "";
       return `<g class="stop-pin ${big ? "main" : "via"}" data-i="${i}" tabindex="0" role="button" aria-label="${esc(L(s.name))}">
           <title>${esc(L(s.name))}</title>
@@ -138,7 +154,7 @@
           ${badge}${label}</g>`;
     };
     let small = "", bigPins = "";
-    route.stops.forEach((s, i) => { const g = pinOf(s, i); if (s.kind === "main" || s.kind === "base") bigPins += g; else small += g; });
+    route.stops.forEach((s, i) => { if (s.isReturn) return; const g = pinOf(s, i); if (s.kind === "main" || s.kind === "base") bigPins += g; else small += g; });
 
     const lines = getaway
       ? pts.slice(1).map((p) => {
@@ -162,7 +178,7 @@
   function drawPath(el, from, to) { el.style.strokeDashoffset = from + (to - from); }
   function animateRoute(svg, getaway) {
     const id = ++animId;
-    const pins = $$(".stop-pin", svg);
+    const pins = $$(".stop-pin", svg).sort((a, b) => a.dataset.i - b.dataset.i);
     pins.forEach((p) => p.classList.remove("on"));
     if (getaway) {
       const spokes = $$(".route-line.spoke", svg), shadows = $$(".route-shadow.spoke", svg);
@@ -210,7 +226,9 @@
     leg: (a, b) => `https://www.google.com/maps/dir/?api=1${a ? `&origin=${a.lat},${a.lng}` : ""}&destination=${b.lat},${b.lng}&travelmode=driving`,
     route: (r) => {
       const s = r.stops, a = s[0], b = s[s.length - 1];
-      const way = s.slice(1, -1).map((x) => `${x.lat},${x.lng}`).join("|");
+      let mid = s.slice(1, -1);
+      if (mid.length > 9) mid = mid.filter((x) => x.kind === "main");
+      const way = mid.slice(0, 9).map((x) => `${x.lat},${x.lng}`).join("|");
       return `https://www.google.com/maps/dir/?api=1&origin=${a.lat},${a.lng}&destination=${b.lat},${b.lng}${way ? `&waypoints=${encodeURIComponent(way)}` : ""}&travelmode=driving`;
     },
     photos: (s) => `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(L(s.name) + " Portugal")}`
@@ -226,9 +244,9 @@
     return `<div class="cover-ph"><span class="cover-medallion">${window.iconSVG(key, 96)}</span><span class="cover-note">${esc(T("photoSoon"))}</span></div>`;
   }
   function card(r) {
-    const meta = isGetaway(r)
+    const meta = isHub(r)
       ? `<span>${esc(T("oneBase"))}</span><span>${r.stops.length - 1} ${esc(T("activities"))}</span>`
-      : `<span>${mains(r).length} ${esc(T("stops"))}</span><span>≈ ${totalKm(r)} km</span>`;
+      : `<span>${nightsTxt(r.nights)}</span><span>${mains(r).length} ${esc(T("stops"))}</span><span>≈ ${totalKm(r)} km</span>`;
     return `<a class="route-card" href="#route-${r.id}">
       <div class="route-card-photo">${cover(r)}<span class="route-card-badge">${r.days} ${esc(T("days"))}</span></div>
       <div class="route-card-body">
@@ -264,30 +282,25 @@
   }
 
   /* ---------- Route page ---------- */
-  const TABS = [["overview", "tOverview"], ["pictures", "tPictures"], ["stay", "tStay"], ["do", "tDo"], ["eat", "tEat"]];
-  function partnerList(s, tab) {
-    const custom = s[tab];
-    const items = custom && custom.length ? custom : [{ name: T({ stay: "exStay", do: "exDo", eat: "exEat" }[tab], { p: L(s.name) }), note: T("exNote"), url: "#", partner: true }];
-    const cta = tab === "eat" ? T("reserve") : T("book");
-    return `<ul class="items">${items.map((it) => `<li class="item">
-      <div><b>${esc(L(it.name))}${it.partner ? `<span class="partner-tag">${esc(T("partner"))}</span>` : ""}</b><small>${esc(L(it.note))}</small></div>
-      <a class="btn btn-primary" href="${esc(it.url || "#")}" target="_blank" rel="noopener sponsored">${esc(cta)}</a></li>`).join("")}</ul>`;
+  const TABS = [["overview", "tOverview"], ["stay", "tStay"], ["do", "tDo"], ["eat", "tEat"], ["pictures", "tPictures"]];
+  const photosOf = (s) => (s.photos || []).map((id) => (window.PHOTOS || {})[id]).filter(Boolean);
+  function recList(items) {
+    if (!items || !items.length) return `<p class="panel-hint">${esc(T("comingSoon"))}</p>`;
+    return `<ul class="recs">${items.map((it) => `<li><h5>${esc(L(it.t))}</h5><p>${esc(L(it.d))}</p>${it.url ? `<a class="rec-link" href="${esc(it.url)}" target="_blank" rel="noopener">${esc(L(it.cta) || T("moreInfo"))} →</a>` : ""}</li>`).join("")}</ul>`;
   }
   function panel(r, i, tab) {
-    const s = r.stops[i], prev = isGetaway(r) ? null : r.stops[i - 1];
-    const lead = (s.photos || []).map((id) => (window.PHOTOS || {})[id]).find(Boolean);
-    if (tab === "overview") return `${lead ? `<figure class="lead-photo"><img src="${esc(lead.src)}" alt="${esc(lead.title)}"><figcaption>${esc(lead.author)} · ${esc(lead.license)}</figcaption></figure>` : ""}<p>${esc(L(s.overview))}</p>
+    const s = r.stops[i], prev = isHub(r) ? null : r.stops[i - 1];
+    const lead = photosOf(s)[0];
+    if (tab === "overview") return `${lead ? `<figure class="lead-photo"><img src="${esc(lead.src)}" alt="${esc(lead.title)}"><figcaption>${esc(lead.author)} · ${esc(lead.license)}</figcaption></figure>` : ""}<p>${esc(L(s.overview || s.text))}</p>
       <div class="panel-actions">
         <a class="btn btn-primary" href="${gm.leg(prev, s)}" target="_blank" rel="noopener">${ic("i-dir")}${esc(prev ? `${T("directionsFrom")} ${L(prev.name)}` : T("directions"))}</a>
         <a class="btn btn-ghost" href="${gm.place(s)}" target="_blank" rel="noopener">${ic("i-pin")}${esc(T("viewMap"))}</a></div>`;
     if (tab === "pictures") {
-      const list = (s.photos || []).map((id) => (window.PHOTOS || {})[id]).filter(Boolean);
-      const grid = list.length
-        ? `<div class="photo-grid real">${list.map((ph) => `<figure><img src="${esc(ph.src)}" alt="${esc(ph.title)}" loading="lazy"><figcaption><a href="${esc(ph.page)}" target="_blank" rel="noopener">${esc(ph.author)}</a> · ${esc(ph.license)}</figcaption></figure>`).join("")}</div>`
-        : `<div class="photo-grid">${'<div class="photo-ph"></div>'.repeat(6)}</div><p class="panel-hint">${esc(T("photosHere", { p: L(s.name) }))}</p>`;
-      return `${grid}<div class="panel-actions"><a class="btn btn-ghost" href="${gm.photos(s)}" target="_blank" rel="noopener">${esc(T("seePhotos", { p: L(s.name) }))}</a></div>`;
+      const list = photosOf(s);
+      return `<div class="photo-grid real">${list.map((ph) => `<figure><img src="${esc(ph.src)}" alt="${esc(ph.title)}" loading="lazy"><figcaption><a href="${esc(ph.page)}" target="_blank" rel="noopener">${esc(ph.author)}</a> · ${esc(ph.license)}</figcaption></figure>`).join("")}</div>
+        <div class="panel-actions"><a class="btn btn-ghost" href="${gm.photos(s)}" target="_blank" rel="noopener">${esc(T("seePhotos", { p: L(s.name) }))}</a></div>`;
     }
-    return partnerList(s, tab);
+    return recList(s[tab]);
   }
 
   function mainItem(r, s, i, n, leg) {
@@ -299,7 +312,7 @@
         <svg class="chev" aria-hidden="true"><use href="#i-chev"/></svg>
       </button>
       <div class="stop-body" id="stop-body-${i}" hidden>
-        <div class="tabs" role="tablist">${TABS.map(([k, l], j) => `<button class="tab" role="tab" data-tab="${k}" aria-selected="${j === 0}">${esc(T(l))}</button>`).join("")}</div>
+        <div class="tabs" role="tablist">${TABS.filter(([k]) => k !== "pictures" || photosOf(s).length).map(([k, l], j) => `<button class="tab" role="tab" data-tab="${k}" aria-selected="${j === 0}">${esc(T(l))}</button>`).join("")}</div>
         <div class="tab-panel" role="tabpanel"></div>
       </div></li>`;
   }
@@ -307,7 +320,7 @@
     return `<li class="stop via" data-i="${i}" id="stop-${i}">${leg}
       <span class="stop-icon small" aria-hidden="true">${window.iconSVG(s.icon, 22)}</span>
       <div class="via-card">
-        ${(() => { const ph = (s.photos || []).map((id) => (window.PHOTOS || {})[id]).find(Boolean); return ph ? `<img class="via-photo" src="${esc(ph.src)}" alt="${esc(ph.title)}" loading="lazy" title="${esc(ph.author)} · ${esc(ph.license)}">` : ""; })()}
+        ${(() => { const ph = photosOf(s)[0]; return ph ? `<img class="via-photo" src="${esc(ph.src)}" alt="${esc(ph.title)}" loading="lazy" title="${esc(ph.author)} · ${esc(ph.license)}">` : ""; })()}
         <p class="via-eyebrow">${esc(eyebrow)}</p>
         <h4>${esc(L(s.name))}</h4>
         <p>${esc(L(s.text))}</p>
@@ -318,8 +331,19 @@
       </div></li>`;
   }
 
+  function returnItem(s, i, from, leg) {
+    return `<li class="stop via return" data-i="${i}" id="stop-${i}">${leg}
+      <span class="stop-icon small" aria-hidden="true">${window.iconSVG(s.icon, 22)}</span>
+      <div class="via-card">
+        <p class="via-eyebrow">${esc(T("day"))} ${s.dayFrom} · ${esc(T("returnEyebrow"))}</p>
+        <h4>${esc(L(s.name))}</h4>
+        <p>${esc(T("returnText"))}</p>
+        <div class="panel-actions"><a class="btn btn-primary btn-sm" href="${gm.leg(from, s)}" target="_blank" rel="noopener">${ic("i-dir")}${esc(T("directions"))}</a></div>
+      </div></li>`;
+  }
+
   function viewRoute(r) {
-    const getaway = isGetaway(r);
+    const getaway = isHub(r);
     let n = 0, items;
     if (getaway) {
       const base = r.stops[0];
@@ -327,14 +351,15 @@
         `<li class="around-title"><h3>${esc(T("aroundBase"))}</h3></li>` +
         r.stops.slice(1).map((s, j) => smallItem(s, j + 1, base,
           `<div class="leg">${ic("i-car")}≈ ${legKm(r, j + 1)} km ${esc(T("fromBase"))}</div>`,
-          T("cat")[s.category] || "")).join("");
+          catOf(s))).join("");
     } else {
       items = r.stops.map((s, i) => {
         const prev = r.stops[i - 1];
         const leg = i === 0
           ? `<div class="leg">${ic("i-pin")}${esc(T("start"))}</div>`
           : `<div class="leg">${ic("i-car")}≈ ${legKm(r, i)} km ${esc(T("fromPrev"))} ${esc(L(prev.name))}</div>`;
-        if (s.kind === "via") return smallItem(s, i, prev, leg, `${T("onTheWay")} · ${T("cat")[s.category] || ""}`);
+        if (s.kind === "return") return returnItem(s, i, prev, leg);
+        if (s.kind === "via") return smallItem(s, i, prev, leg, [T("onTheWay"), catOf(s)].filter(Boolean).join(" · "));
         return mainItem(r, s, i, ++n, leg);
       }).join("");
     }
@@ -345,14 +370,15 @@
          <div class="stat"><b>${r.stops.length - 1}</b><span>${esc(T("statAround"))}</span></div>
          <div class="stat"><b>≤ ${maxKm(r)}</b><span>${esc(T("statRadius"))}</span></div>`
       : `<div class="stat"><b>${r.days}</b><span>${esc(T("statDays"))}</span></div>
+         <div class="stat"><b>${r.nights}</b><span>${esc(T("statNights"))}</span></div>
          <div class="stat"><b>${mains(r).length}</b><span>${esc(T("statStops"))}</span></div>
-         <div class="stat"><b>${vias(r).length}</b><span>${esc(T("statVia"))}</span></div>
          <div class="stat"><b>≈ ${totalKm(r)}</b><span>${esc(T("statKm"))}</span></div>`;
 
     app.innerHTML = `
       <section class="route-hero"><div class="wrap">
         <p class="crumbs"><a href="#${(SECTIONS.find((x) => x[1] === r.type) || SECTIONS[0])[0]}">${esc(T("breadcrumb"))}</a> / ${esc(L(r.title))}</p>
         <h1>${esc(L(r.title))}</h1>
+        ${r.logistics ? `<p class="logistics">${ic("i-pin")}${esc(L(r.logistics))}</p>` : ""}
         <p class="lead">${esc(L(r.summary))}</p>
         <div class="route-stats">${stats}</div>
         ${getaway ? "" : `<div class="route-actions"><a class="btn btn-primary" href="${gm.route(r)}" target="_blank" rel="noopener">${ic("i-dir")}${esc(T("fullRoute"))}</a></div>`}
@@ -364,7 +390,12 @@
           <p class="map-note">${esc(T("mapNote"))}</p>
         </div>
         <ol class="itinerary">${items}</ol>
-      </div>`;
+      </div>
+      ${r.advice && r.advice.length ? `<section class="advice"><div class="wrap"><div class="advice-box">
+        <h2>${esc(T("adviceTitle"))}</h2>
+        <p class="advice-intro">${esc(T("adviceIntro", { r: L(r.title) }))}</p>
+        <ul>${r.advice.map((a) => `<li>${esc(L(a))}</li>`).join("")}</ul>
+      </div></div></section>` : ""}`;
 
     const svg = $("#map-frame svg");
     animateRoute(svg, getaway);

@@ -335,6 +335,21 @@ button { font: inherit; cursor: pointer; }
 .lead-photo img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; display: block; }
 .via-photo { float: right; width: 120px; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 6px; margin: 0 0 8px 12px; }
 .via-card::after { content: ""; display: block; clear: both; }
+.recs { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.recs li { padding: 12px 14px; border-left: 3px solid var(--bordeaux); background: var(--bordeaux-soft); border-radius: 0 8px 8px 0; }
+.recs h5 { margin: 0 0 4px; font-family: var(--font-display); font-weight: 400; font-size: 18px; color: var(--cobalt-deep); }
+.recs p { font-size: 15px; }
+.rec-link { display: inline-block; margin-top: 6px; font-size: 14px; font-weight: 700; color: var(--bordeaux); }
+.logistics { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-weight: 700; color: var(--bordeaux); }
+.logistics svg { width: 18px; height: 18px; flex: none; }
+.advice { padding-block: 8px 48px; }
+.advice-box { background: #fff; border: 1px solid var(--line); border-top: 4px solid var(--bordeaux); border-radius: var(--radius); padding: 24px 28px; }
+.advice-box h2 { font-size: clamp(24px, 3vw, 32px); }
+.advice-intro { color: var(--muted); margin: 6px 0 14px; }
+.advice-box ul { margin: 0; padding-left: 20px; display: grid; gap: 10px; }
+.advice-box li { max-width: 70em; }
+.advice-box li::marker { color: var(--bordeaux); }
+.stop.return .via-card { border-style: solid; border-color: var(--line); background: #fff; }
 .photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
 .photo-ph {
   aspect-ratio: 1; border-radius: 6px; background: var(--tile) 0 0 / 40px 40px; position: relative; opacity: .5;

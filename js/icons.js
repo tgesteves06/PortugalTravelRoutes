@@ -201,7 +201,46 @@
       <circle cx="6.5" cy="16.6" r="1" fill="${D}"/>
       <path d="M4 25h24" stroke="${K}" stroke-width="1.6" stroke-linecap="round"/>
       <path d="M6 22h20M6 25.5h20" stroke="${K}" stroke-width=".8" opacity=".5"/>
-      <path d="M8 28c2-2 4-2 6 0M18 28c2-2 4-2 6 0" stroke="${C}" stroke-width="1.4" fill="none"/>`
+      <path d="M8 28c2-2 4-2 6 0M18 28c2-2 4-2 6 0" stroke="${C}" stroke-width="1.4" fill="none"/>`,
+    bridge: `
+      <path d="M2 26c3-1.5 5 1.5 8 0s5 1.5 8 0 5 1.5 8 0 4 0 4 0" fill="none" stroke="${L}" stroke-width="2" stroke-linecap="round"/>
+      <path d="M2 14h28v3H2z" fill="${S2}"/>
+      <path d="M3 17h26v6h-3a5 5 0 0 0-10 0h0a5 5 0 0 0-10 0H3z" fill="${S}"/>
+      <path d="M16 23a5 5 0 0 1 10 0M6 23a5 5 0 0 1 10 0" fill="none" stroke="${S2}" stroke-width="1"/>
+      <path d="M2 14l2-2h24l2 2" fill="${S2}"/>
+      <circle cx="25" cy="7" r="3" fill="${O}"/>`,
+    tram: `
+      <path d="M16 3v4M10 3h12" stroke="${D}" stroke-width="1.2"/>
+      <rect x="5" y="7" width="22" height="17" rx="3" fill="${O}"/>
+      <rect x="5" y="19" width="22" height="5" rx="1" fill="${W}"/>
+      <rect x="8" y="10" width="4.5" height="5" rx="1" fill="${W}"/><rect x="13.75" y="10" width="4.5" height="5" rx="1" fill="${W}"/><rect x="19.5" y="10" width="4.5" height="5" rx="1" fill="${W}"/>
+      <rect x="5" y="7" width="22" height="2" fill="${C}"/>
+      <text x="16" y="23" text-anchor="middle" font-size="4.5" font-weight="700" font-family="sans-serif" fill="${D}">28</text>
+      <circle cx="10" cy="26" r="2" fill="${D}"/><circle cx="22" cy="26" r="2" fill="${D}"/>
+      <path d="M3 29h26" stroke="${S2}" stroke-width="1.4"/>`,
+    schist: `
+      <path d="M2 28c4-6 8-12 14-14s10 0 14-4v18z" fill="${G}"/>
+      <path d="M5 26h8v-6l-4-3-4 3z" fill="#6f665c"/><path d="M4.5 20l4.5-3.4 4.5 3.4" fill="none" stroke="#4d463f" stroke-width="1"/>
+      <rect x="7.5" y="22" width="2.4" height="4" fill="${B}"/>
+      <path d="M14 22h8v-6l-4-3-4 3z" fill="#7d7368"/><path d="M13.5 16l4.5-3.4 4.5 3.4" fill="none" stroke="#4d463f" stroke-width="1"/>
+      <rect x="16.8" y="18" width="2.4" height="4" fill="${B}"/>
+      <path d="M22 17h7v-5l-3.5-2.6L22 12z" fill="#6f665c"/>
+      <rect x="24.5" y="13" width="2" height="2.4" fill="${B}"/>`,
+    university: `
+      <rect x="11" y="9" width="10" height="19" fill="${S}"/>
+      <path d="M10 9h12l-1-2H11z" fill="${S2}"/>
+      <path d="M12 7V4l4-2 4 2v3z" fill="${S}"/>
+      <circle cx="16" cy="13" r="3" fill="${W}" stroke="${D}" stroke-width=".8"/>
+      <path d="M16 11.2V13l1.2.8" stroke="${D}" stroke-width=".7" fill="none"/>
+      <rect x="14.5" y="19" width="3" height="5" rx="1.5" fill="${D}"/>
+      <path d="M3 28V17h8v11M21 28V17h8v11" fill="${S2}"/>
+      <path d="M2 28h28" stroke="${S2}" stroke-width="2" stroke-linecap="round"/>`,
+    olive: `
+      <path d="M6 27c5-6 10-12 20-20" stroke="${K}" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+      <g fill="#6f8f3a"><ellipse cx="11" cy="17" rx="5" ry="2" transform="rotate(-50 11 17)"/><ellipse cx="17" cy="12" rx="5" ry="2" transform="rotate(-30 17 12)"/>
+      <ellipse cx="20" cy="17" rx="5" ry="2" transform="rotate(-70 20 17)"/><ellipse cx="24" cy="8" rx="4" ry="1.8" transform="rotate(-20 24 8)"/></g>
+      <ellipse cx="13" cy="22" rx="2.2" ry="2.8" fill="#3d4a1f"/><ellipse cx="22" cy="12.5" rx="2" ry="2.6" fill="#556b2f"/>
+      <path d="M4 29h14" stroke="${O}" stroke-width="2" stroke-linecap="round"/>`
   };
 
   window.iconSVG = function (key, size) {
