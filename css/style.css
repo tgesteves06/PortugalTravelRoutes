@@ -363,7 +363,10 @@ button { font: inherit; cursor: pointer; }
 .photo-grid.real figcaption a { color: inherit; }
 .lead-photo { margin: 0 0 14px; }
 .lead-photo img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; display: block; }
-.via-photo { float: right; width: 120px; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 6px; margin: 0 0 8px 12px; }
+.via-figure { margin: -12px -16px 12px; }
+.via-photo { display: block; width: 100%; aspect-ratio: 16 / 7; object-fit: cover; border-radius: var(--radius) var(--radius) 0 0; }
+.via-figure figcaption { font-size: 11px; color: var(--muted); padding: 4px 16px 0; text-align: right; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.via-figure figcaption a { color: inherit; }
 .via-card::after { content: ""; display: block; clear: both; }
 .recs { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
 .recs li { padding: 12px 14px; border-left: 3px solid var(--bordeaux); background: var(--bordeaux-soft); border-radius: 0 8px 8px 0; }
@@ -468,7 +471,6 @@ button { font: inherit; cursor: pointer; }
   .brand-tag { font-size: 11px; }
   .form-grid { grid-template-columns: 1fr; }
   .photo-grid { grid-template-columns: repeat(2, 1fr); }
-  .via-photo { width: 96px; }
   .item { flex-wrap: wrap; }
   .item .btn { margin-left: 0; }
 }

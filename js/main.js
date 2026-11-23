@@ -349,7 +349,7 @@
     return `<li class="stop via" data-i="${i}" id="stop-${i}">${leg}
       <span class="stop-icon small" aria-hidden="true">${window.iconSVG(s.icon, 22)}</span>
       <div class="via-card">
-        ${(() => { const ph = photosOf(s)[0]; return ph ? `<img class="via-photo" src="${esc(ph.src)}" alt="${esc(ph.title)}" loading="lazy" title="${esc(ph.author)} · ${esc(ph.license)}">` : ""; })()}
+        ${(() => { const ph = photosOf(s)[0]; return ph ? `<figure class="via-figure"><img class="via-photo" src="${esc(ph.src)}" alt="${esc(L(s.name))}" loading="lazy"><figcaption><a href="${esc(ph.page)}" target="_blank" rel="noopener">${esc(ph.author)}</a> · ${esc(ph.license)}</figcaption></figure>` : ""; })()}
         <p class="via-eyebrow">${esc(eyebrow)}</p>
         <h4>${esc(L(s.name))}</h4>
         <p>${esc(L(s.text))}</p>
