@@ -117,6 +117,22 @@
 
 <main id="app"></main>
 
+<section class="newsletter" aria-labelledby="news-title">
+  <div class="wrap news-inner">
+    <div>
+      <h2 id="news-title" data-i18n="newsTitle">New routes in your inbox</h2>
+      <p data-i18n="newsText">Receive new routes and travel tips by email. No spam, and you can unsubscribe at any time.</p>
+    </div>
+    <form id="news-form" class="news-form" novalidate>
+      <label for="news-email" class="visually-hidden" data-i18n="email">Email</label>
+      <input id="news-email" type="email" required data-i18n-ph="newsPh" placeholder="Your email">
+      <button class="btn btn-wine" type="submit" data-i18n="newsBtn">Subscribe</button>
+      <label class="check news-check"><input type="checkbox" id="news-consent" required> <span data-i18n="newsConsent">I want to receive the newsletter and accept the privacy policy.</span></label>
+      <p class="news-msg" id="news-msg" hidden role="status"></p>
+    </form>
+  </div>
+</section>
+
 <!-- ===== Footer (all pages) ===== -->
 <footer class="site-footer">
   <div class="tile-band"></div>

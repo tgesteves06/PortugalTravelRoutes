@@ -65,7 +65,18 @@ window.I18N = {
     returnTo: "Return to {p}",
     returnText: "Last leg of the route. Drop off the car and leave time for the airport.",
     adviceTitle: "Tips for this route",
-    adviceIntro: "To make the most of {r}, these are our main recommendations:"
+    adviceIntro: "To make the most of {r}, these are our main recommendations:",
+    favTitle: "Your favourites",
+    favText: "The routes you saved with the heart. They are kept in this browser.",
+    favAdd: "Add to favourites",
+    favRemove: "Remove from favourites",
+    newsTitle: "New routes in your inbox",
+    newsText: "Receive new routes and travel tips by email. No spam, and you can unsubscribe at any time.",
+    newsPh: "Your email",
+    newsBtn: "Subscribe",
+    newsConsent: "I want to receive the newsletter and accept the privacy policy.",
+    newsError: "Please write a valid email and tick the box.",
+    newsOk: "Thank you! This is a preview: subscriptions will start when the site goes online."
   },
   pt: {
     tagline1: "Designed by Locals.", tagline2: "Inspired by Portugal.",
@@ -132,7 +143,18 @@ window.I18N = {
     returnTo: "Regresso a {p}",
     returnText: "Última etapa da rota. Entregue o carro e deixe margem para o aeroporto.",
     adviceTitle: "Conselhos para esta rota",
-    adviceIntro: "Para aproveitar a rota {r}, estas são as principais recomendações:"
+    adviceIntro: "Para aproveitar a rota {r}, estas são as principais recomendações:",
+    favTitle: "Os seus favoritos",
+    favText: "As rotas que guardou com o coração. Ficam guardadas neste browser.",
+    favAdd: "Adicionar aos favoritos",
+    favRemove: "Remover dos favoritos",
+    newsTitle: "Novas rotas no seu email",
+    newsText: "Receba novas rotas e dicas de viagem por email. Sem spam, e pode cancelar quando quiser.",
+    newsPh: "O seu email",
+    newsBtn: "Subscrever",
+    newsConsent: "Quero receber a newsletter e aceito a política de privacidade.",
+    newsError: "Escreva um email válido e assinale a caixa.",
+    newsOk: "Obrigado! Isto é uma pré-visualização: as subscrições começam quando o site estiver online."
   },
   es: {
     tagline1: "Designed by Locals.", tagline2: "Inspired by Portugal.",
@@ -199,7 +221,18 @@ window.I18N = {
     returnTo: "Regreso a {p}",
     returnText: "Última etapa de la ruta. Devuelve el coche y deja margen para el aeropuerto.",
     adviceTitle: "Consejos para esta ruta",
-    adviceIntro: "Para aprovechar la ruta {r}, estas son nuestras principales recomendaciones:"
+    adviceIntro: "Para aprovechar la ruta {r}, estas son nuestras principales recomendaciones:",
+    favTitle: "Tus favoritos",
+    favText: "Las rutas que guardaste con el corazón. Se guardan en este navegador.",
+    favAdd: "Añadir a favoritos",
+    favRemove: "Quitar de favoritos",
+    newsTitle: "Nuevas rutas en tu email",
+    newsText: "Recibe nuevas rutas y consejos de viaje por email. Sin spam, y puedes darte de baja cuando quieras.",
+    newsPh: "Tu email",
+    newsBtn: "Suscribirme",
+    newsConsent: "Quiero recibir la newsletter y acepto la política de privacidad.",
+    newsError: "Escribe un email válido y marca la casilla.",
+    newsOk: "¡Gracias! Esto es una vista previa: las suscripciones empezarán cuando el sitio esté en línea."
   },
   fr: {
     tagline1: "Designed by Locals.", tagline2: "Inspired by Portugal.",
@@ -266,6 +299,17 @@ window.I18N = {
     returnTo: "Retour à {p}",
     returnText: "Dernière étape de l'itinéraire. Rendez la voiture et prévoyez du temps pour l'aéroport.",
     adviceTitle: "Conseils pour cet itinéraire",
-    adviceIntro: "Pour profiter de l'itinéraire {r}, voici nos principales recommandations :"
+    adviceIntro: "Pour profiter de l'itinéraire {r}, voici nos principales recommandations :",
+    favTitle: "Vos favoris",
+    favText: "Les itinéraires enregistrés avec le cœur. Ils sont gardés dans ce navigateur.",
+    favAdd: "Ajouter aux favoris",
+    favRemove: "Retirer des favoris",
+    newsTitle: "De nouveaux itinéraires dans votre boîte mail",
+    newsText: "Recevez de nouveaux itinéraires et conseils de voyage par email. Pas de spam, désinscription à tout moment.",
+    newsPh: "Votre email",
+    newsBtn: "S'abonner",
+    newsConsent: "Je souhaite recevoir la newsletter et j'accepte la politique de confidentialité.",
+    newsError: "Écrivez un email valide et cochez la case.",
+    newsOk: "Merci ! Ceci est un aperçu : les abonnements commenceront quand le site sera en ligne."
   }
 };

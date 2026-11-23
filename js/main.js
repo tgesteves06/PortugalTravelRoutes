@@ -39,6 +39,28 @@
     buildIndex();
   }
 
+  /* ---------- Favourites (kept in this browser) ---------- */
+  let favs = [];
+  try { favs = JSON.parse(localStorage.getItem("ptr-favs") || "[]").filter((id) => ROUTES.some((r) => r.id === id)); } catch (_) { favs = []; }
+  const isFav = (id) => favs.includes(id);
+  function toggleFav(id) {
+    favs = isFav(id) ? favs.filter((x) => x !== id) : favs.concat(id);
+    try { localStorage.setItem("ptr-favs", JSON.stringify(favs)); } catch (_) {}
+  }
+  const heart = (r) => `<button class="fav-btn${isFav(r.id) ? " on" : ""}" type="button" data-fav="${r.id}" aria-pressed="${isFav(r.id)}" aria-label="${esc(T(isFav(r.id) ? "favRemove" : "favAdd"))}" title="${esc(T(isFav(r.id) ? "favRemove" : "favAdd"))}">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.3-9.4C1.4 7.6 3.6 4 7.2 4c2 0 3.6 1.1 4.8 2.8C13.2 5.1 14.8 4 16.8 4c3.6 0 5.8 3.6 4.5 7.1-1.8 4.8-9.3 9.4-9.3 9.4z"/></svg></button>`;
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-fav]");
+    if (!b) return;
+    e.preventDefault(); e.stopPropagation();
+    toggleFav(b.dataset.fav);
+    if (location.hash.startsWith("#route-")) {
+      const on = isFav(b.dataset.fav);
+      b.classList.toggle("on", on); b.setAttribute("aria-pressed", on);
+      b.setAttribute("aria-label", T(on ? "favRemove" : "favAdd")); b.title = T(on ? "favRemove" : "favAdd");
+    } else { const y = window.scrollY; viewHome(); window.scrollTo(0, y); }
+  });
+
   /* ---------- Geometry ---------- */
   const COS = Math.cos((39.5 * Math.PI) / 180);
   const project = (lat, lng) => [(lng + 9.6) * COS * 100 + 10, (42.2 - lat) * 100 + 10];
@@ -247,13 +269,16 @@
     const meta = isHub(r)
       ? `<span>${esc(T("oneBase"))}</span><span>${r.stops.length - 1} ${esc(T("activities"))}</span>`
       : `<span>${nightsTxt(r.nights)}</span><span>${mains(r).length} ${esc(T("stops"))}</span><span>≈ ${totalKm(r)} km</span>`;
-    return `<a class="route-card" href="#route-${r.id}">
-      <div class="route-card-photo">${cover(r)}<span class="route-card-badge">${r.days} ${esc(T("days"))}</span></div>
-      <div class="route-card-body">
-        <h3>${esc(L(r.title))}</h3>
-        <p>${esc(L(r.tagline))}</p>
-        <div class="route-meta">${meta}</div>
-      </div></a>`;
+    return `<article class="route-card">
+      <a class="route-card-link" href="#route-${r.id}">
+        <div class="route-card-photo">${cover(r)}<span class="route-card-badge">${r.days} ${esc(T("days"))}</span></div>
+        <div class="route-card-body">
+          <h3>${esc(L(r.title))}</h3>
+          <p>${esc(L(r.tagline))}</p>
+          <div class="route-meta">${meta}</div>
+        </div></a>
+      ${heart(r)}
+    </article>`;
   }
   function viewHome() {
     app.innerHTML = `
@@ -271,6 +296,10 @@
       <div class="tile-band"></div>
       <div class="wrap routes-intro" id="routes"><div><p class="eyebrow">${esc(T("routesEyebrow"))}</p><h2>${esc(T("routesTitle"))}</h2></div>
         <div class="school" aria-hidden="true">${window.sardineSVG(0, 92)}${window.sardineSVG(2, 78)}${window.sardineSVG(4, 86)}</div></div>
+      ${favs.length ? `<section class="section route-section fav-section" id="favourites"><div class="wrap">
+          <div class="section-head"><h2><span class="sec-icon fav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-9.3-9.4C1.4 7.6 3.6 4 7.2 4c2 0 3.6 1.1 4.8 2.8C13.2 5.1 14.8 4 16.8 4c3.6 0 5.8 3.6 4.5 7.1-1.8 4.8-9.3 9.4-9.3 9.4z"/></svg></span>${esc(T("favTitle"))}</h2><p>${esc(T("favText"))}</p></div>
+          <div class="route-grid">${favs.map((id) => ROUTES.find((r) => r.id === id)).filter(Boolean).map(card).join("")}</div>
+        </div></section>` : ""}
       ${SECTIONS.map(([anchor, type, t, txt, icon]) => {
         const list = ROUTES.filter((r) => r.type === type);
         return `<section class="section route-section" id="${anchor}"><div class="wrap">
@@ -377,7 +406,7 @@
     app.innerHTML = `
       <section class="route-hero"><div class="wrap">
         <p class="crumbs"><a href="#${(SECTIONS.find((x) => x[1] === r.type) || SECTIONS[0])[0]}">${esc(T("breadcrumb"))}</a> / ${esc(L(r.title))}</p>
-        <h1>${esc(L(r.title))}</h1>
+        <div class="route-title-row"><h1>${esc(L(r.title))}</h1>${heart(r)}</div>
         ${r.logistics ? `<p class="logistics">${ic("i-pin")}${esc(L(r.logistics))}</p>` : ""}
         <p class="lead">${esc(L(r.summary))}</p>
         <div class="route-stats">${stats}</div>
@@ -506,6 +535,15 @@
     try { navigator.clipboard.writeText(location.href).then(() => (msg.textContent = T("copied")), fallback); } catch (_) { fallback(); }
   });
   $("#year").textContent = new Date().getFullYear();
+
+  /* ---------- Newsletter ---------- */
+  $("#news-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const f = e.currentTarget, msg = $("#news-msg");
+    msg.hidden = false;
+    if (!f.checkValidity()) { msg.textContent = T("newsError"); return; }
+    msg.textContent = T("newsOk"); f.reset();
+  });
 
   /* ---------- Contact ---------- */
   const modal = $("#contact-modal");
