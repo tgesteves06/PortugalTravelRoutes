@@ -39,3 +39,7 @@ are listed in `js/photos.js` and shown next to each photo on the site.
 The site is prepared for **portugaltravelroutes.com** (`CNAME`, canonical URL,
 social preview tags, `robots.txt`, `sitemap.xml`). Nothing is published until
 hosting is switched on and the domain's DNS points to it.
+
+Photos are linked to places in `js/place-photos.js` (ids from `js/photos.js`).
+To add your own photo: put the file in `images/`, add an entry to `js/photos.js`
+with author and licence, and add its id to the place in `js/place-photos.js`.
