@@ -284,7 +284,7 @@
 
     {
       id: "arrabida-and-troia",
-      type: "medium", days: 5, nights: 4, photo: null,
+      type: "medium", days: 5, nights: 4, photo: "troia-1",
       title: x("From the Arrábida to Comporta", "Da Arrábida à Comporta", "De la Arrábida a Comporta", "De l'Arrábida à Comporta"),
       tagline: x("Castles, Moscatel, dolphins and white beaches south of Lisbon", "Castelos, Moscatel, golfinhos e praias brancas a sul de Lisboa"),
       logistics: x("Start and end in Lisbon", "Início e fim em Lisboa"),
@@ -362,7 +362,7 @@
 
     {
       id: "cascais-getaway",
-      type: "getaway", days: 2, nights: 1, photo: null,
+      type: "getaway", days: 2, nights: 1, photo: "cascais-1",
       title: x("Cascais Getaway", "Escapadinha em Cascais", "Escapada en Cascais", "Escapade à Cascais"),
       tagline: x("By the sea, with Sintra and Colares around the corner", "À beira-mar, com Sintra e Colares ali ao lado"),
       summary: x(
@@ -408,7 +408,7 @@
 
     {
       id: "arrabida-getaway",
-      type: "getaway", days: 2, nights: 1, photo: null,
+      type: "getaway", days: 2, nights: 1, photo: "galapinhos-1",
       title: x("Summer in the Arrábida", "Verão na Arrábida", "Verano en la Arrábida", "Été dans l'Arrábida"),
       tagline: x("Wine estates, turquoise beaches and a boat along the coast", "Quintas, praias de água turquesa e um passeio de barco pela costa"),
       summary: x(
@@ -431,7 +431,7 @@
 
     {
       id: "porto-and-braga",
-      type: "getaway", days: 5, nights: 4, photo: null,
+      type: "getaway", days: 5, nights: 4, photo: "porto-1",
       title: x("Porto and Braga", "Porto e Braga", "Oporto y Braga", "Porto et Braga"),
       tagline: x("Two days in Porto and two in Braga, the heart of the Minho", "Dois dias no Porto e dois em Braga, no coração do Minho"),
       logistics: x("Start and end in Porto", "Início e fim no Porto"),
@@ -455,12 +455,13 @@
 
   /* Resolve each stop against its place card */
   const P = window.PLACES || {};
+  const PH = window.PLACE_PHOTOS || {};
   window.ROUTES.forEach((route) => {
     route.stops = route.stops.map((s) => {
       const p = P[s.place];
       if (!p) console.warn("Missing place", s.place);
-      return Object.assign({}, p, s, { text: s.text || (p && p.text) || (p && p.overview) });
+      return Object.assign({}, p, s, { text: s.text || (p && p.text) || (p && p.overview), photos: s.photos || (p && p.photos) || PH[s.place] || [] });
     });
-    if (route.returnTo) route.returnTo = Object.assign({}, P[route.returnTo.place], route.returnTo);
+    if (route.returnTo) route.returnTo = Object.assign({}, P[route.returnTo.place], { photos: PH[route.returnTo.place] || [] }, route.returnTo);
   });
 })();
